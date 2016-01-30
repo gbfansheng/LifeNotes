@@ -87,6 +87,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <RadioGroup
+            android:id="@+id/gender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -108,6 +109,7 @@
                 android:text="女"/>
         </RadioGroup>
         <RadioGroup
+            android:id="@+id/marry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -251,7 +253,7 @@
                 android:textSize="20dp"/>
             <android.support.v7.widget.AppCompatSpinner
                 android:id="@+id/pressure"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:entries="@array/pressurearray"/>
         </LinearLayout>
@@ -262,11 +264,11 @@
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="100dp"
                 android:layout_height="48dp"
-                android:text="睡眠状况:"
+                android:text="居住状况:"
                 android:textSize="20dp"/>
             <android.support.v7.widget.AppCompatSpinner
                 android:id="@+id/living"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:entries="@array/livingarray">
             </android.support.v7.widget.AppCompatSpinner>
