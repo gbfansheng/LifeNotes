@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sleeparray">
+        <item>好</item>
+        <item>中</item>
+        <item>差</item>
+    </string-array>
+    <string-array name="pressurearray">
+        <item>大</item>
+        <item>中</item>
+        <item>小</item>
+    </string-array>
+    <string-array name="livingarray">
+        <item>好</item>
+        <item>中</item>
+        <item>差</item>
+    </string-array>
+</resources>
