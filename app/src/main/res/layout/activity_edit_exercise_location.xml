@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="运动地点:"
+        android:id="@+id/textView6"
+        android:layout_row="0"
+        android:layout_column="0"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp" />
+
+    <RadioGroup android:id="@+id/exercise_location_group" android:contentDescription="地点" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp">
+    <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="公路"
+            android:id="@+id/radioButton"
+            android:checked="false" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="公园"
+        android:id="@+id/radioButton2"
+        android:checked="false" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="海边"
+        android:id="@+id/radioButton5"
+        android:checked="false" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="健身房"
+        android:id="@+id/radioButton3"
+        android:checked="false" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="体育馆"
+        android:id="@+id/radioButton4"
+        android:checked="false" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="其它"
+        android:id="@+id/radioButton6"
+        android:checked="false" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="家里"
+        android:id="@+id/radioButton7"
+        android:checked="false" />
+
+    </RadioGroup>
+
+</LinearLayout>

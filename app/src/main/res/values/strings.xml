@@ -13,4 +13,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="totay_work">今日工作</string>
+    <string name="totay_exercise">今日运动</string>
+    <string name="totay_entertainment">今日休闲</string>
 </resources>
