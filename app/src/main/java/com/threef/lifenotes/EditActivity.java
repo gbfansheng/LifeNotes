@@ -5,10 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.app.AlertDialog;
+import java.util.ArrayList;
+import java.util.List;
+import java.lang.reflect.Field;
+
 
 public class EditActivity extends AppCompatActivity {
 
@@ -120,9 +125,36 @@ public class EditActivity extends AppCompatActivity {
             baseURL += checkedBtn.getText();
         }
 
+        baseURL += "&moods=";
+        baseURL += getMoods();
+
         Log.i("URL", baseURL);
         requestURL(baseURL);
     }
+
+    String[] getMoods(){
+        List moods = new ArrayList();
+        for(int i = 0;i < 15;i ++){
+            String id_name = "checkBox" + i;
+            int id = getResId(id_name, CheckBox.class);
+            CheckBox checkBox = (CheckBox) findViewById(id);
+            if (checkBox.isChecked()){
+                moods.add(checkBox.getText());
+            }
+        }
+        return  (String[])moods.toArray();
+    }
+
+    public static int getResId(String resName, Class<?> c) {
+        try {
+            Field idField = c.getDeclaredField(resName);
+            return idField.getInt(idField);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
 
     void showAlert(String title,String text){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -138,6 +170,4 @@ public class EditActivity extends AppCompatActivity {
     void requestURL(String url){
 
     }
-
-
 }
