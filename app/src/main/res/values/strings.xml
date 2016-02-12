@@ -14,4 +14,7 @@
         completions."
     </string>
     <string name="title_activity_collect_info">CollectInfoActivity</string>
+    <string name="title_activity_epq">EPQActivity</string>
+    <string name="title_activity_epqresult">EPQResultActivity</string>
+    <string name="title_activity_daily_record">DailyRecordActivity</string>
 </resources>
