@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.app.AlertDialog;
 
 public class EditActivity extends AppCompatActivity {
 
@@ -55,12 +58,86 @@ public class EditActivity extends AppCompatActivity {
         EditText timeText = (EditText) findViewById(R.id.edit_text_time);
         baseURL += "&duiring=";
         baseURL += timeText.getText();
+        if (timeText.getText() == null){
+            showAlert(getString(R.string.alert_title),getString(R.string.alert_time));
+            return;
+        }
 
         EditText heartBeatText = (EditText) findViewById(R.id.edit_text_heartbeat);
         baseURL += "&hartRate=";
         baseURL += heartBeatText.getText();
 
+        if (heartBeatText.getText() == null){
+            showAlert(getString(R.string.alert_title),getString(R.string.alert_heartbeat));
+            return;
+        }
+
+        RadioGroup entertainment_location = (RadioGroup) findViewById(R.id.entertainment_location_group);
+        if (entertainment_location != null){
+            baseURL += "&entertaiment_location=";
+            int checkedId = entertainment_location.getCheckedRadioButtonId();
+            if (checkedId < 0){
+                showAlert(getString(R.string.alert_title),getString(R.string.alert_entertainment_location));
+                return;
+            }
+            RadioButton checkedBtn = (RadioButton)findViewById(checkedId);
+            baseURL += checkedBtn.getText();
+        }
+
+        RadioGroup exercise_location = (RadioGroup) findViewById(R.id.exercise_location_group);
+        if (exercise_location != null){
+            baseURL += "&exercise_location=";
+            int checkedId = exercise_location.getCheckedRadioButtonId();
+            if (checkedId < 0){
+                showAlert(getString(R.string.alert_title),getString(R.string.alert_exercise_location));
+                return;
+            }
+            RadioButton checkedBtn = (RadioButton)findViewById(checkedId);
+            baseURL += checkedBtn.getText();
+        }
+
+        RadioGroup exercise_type = (RadioGroup) findViewById(R.id.exercise_type_group);
+        if (exercise_type != null){
+            baseURL += "&exercise_type=";
+            int checkedId = exercise_type.getCheckedRadioButtonId();
+            if (checkedId < 0){
+                showAlert(getString(R.string.alert_title),getString(R.string.alert_exercise_type));
+                return;
+            }
+            RadioButton checkedBtn = (RadioButton)findViewById(checkedId);
+            baseURL += checkedBtn.getText();
+        }
+
+        RadioGroup work_tension = (RadioGroup) findViewById(R.id.work_tension);
+        if (work_tension != null){
+            baseURL += "&work_tension=";
+            int checkedId = work_tension.getCheckedRadioButtonId();
+            if (checkedId < 0){
+                showAlert(getString(R.string.alert_title),getString(R.string.alert_work_tension));
+                return;
+            }
+            RadioButton checkedBtn = (RadioButton)findViewById(checkedId);
+            baseURL += checkedBtn.getText();
+        }
+
         Log.i("URL", baseURL);
+        requestURL(baseURL);
     }
+
+    void showAlert(String title,String text){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //    设置Title的图标
+        builder.setTitle(title);
+        //    设置Content来显示一个信息
+        builder.setMessage(text);
+        //    设置一个PositiveButton
+        builder.setPositiveButton("确定",null);
+    }
+
+
+    void requestURL(String url){
+
+    }
+
 
 }

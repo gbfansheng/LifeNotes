@@ -22,6 +22,10 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:orientation="horizontal">
+
     <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,6 +71,11 @@
         android:layout_column="0"
         android:checked="false" />
 
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:orientation="horizontal">
+
         <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -102,6 +111,8 @@
         android:layout_row="3"
         android:layout_column="2"
         android:checked="false" />
+
+        </LinearLayout>
 
     </RadioGroup>
 
