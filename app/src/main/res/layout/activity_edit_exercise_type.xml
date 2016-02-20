@@ -9,12 +9,10 @@
         android:layout_height="wrap_content"
         android:text="运动类型:"
         android:id="@+id/textView6"
-        android:layout_row="0"
-        android:layout_column="0"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp" />
 
-    <RadioGroup android:id="@+id/exercise_type_group"
+    <com.threef.lifenotes.ToggleButtonGroupTableLayout android:id="@+id/exercise_type_group"
         android:contentDescription="地点"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,9 +20,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" android:orientation="horizontal">
+        <TableRow>
 
     <RadioButton
             android:layout_width="wrap_content"
@@ -53,6 +49,9 @@
         android:layout_column="1"
         android:checked="false" />
 
+            </TableRow>
+        <TableRow>
+
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -71,10 +70,6 @@
         android:layout_column="0"
         android:checked="false" />
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" android:orientation="horizontal">
 
         <RadioButton
         android:layout_width="wrap_content"
@@ -84,6 +79,10 @@
         android:layout_row="1"
         android:layout_column="1"
         android:checked="false" />
+
+
+        </TableRow>
+    <TableRow>
 
     <RadioButton
         android:layout_width="wrap_content"
@@ -112,8 +111,8 @@
         android:layout_column="2"
         android:checked="false" />
 
-        </LinearLayout>
+        </TableRow>
 
-    </RadioGroup>
+    </com.threef.lifenotes.ToggleButtonGroupTableLayout>
 
 </LinearLayout>

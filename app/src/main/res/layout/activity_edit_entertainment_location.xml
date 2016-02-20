@@ -11,17 +11,14 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp" />
 
-    <RadioGroup android:id="@+id/entertainment_location_group"
+    <com.threef.lifenotes.ToggleButtonGroupTableLayout android:id="@+id/entertainment_location_group"
         android:contentDescription="地点" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp">
 
-        <LinearLayout android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:orientation="horizontal">
-
+    <TableRow>
             <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -43,19 +40,15 @@
                 android:id="@+id/radioButton5"
                 android:checked="false" />
 
+    </TableRow>
+    <TableRow>
+
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="KTV"
                 android:id="@+id/radioButton3"
                 android:checked="false" />
-
-        </LinearLayout>
-
-
-        <LinearLayout android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:orientation="horizontal">
 
             <RadioButton
                 android:layout_width="wrap_content"
@@ -71,6 +64,9 @@
                 android:id="@+id/radioButton6"
                 android:checked="false" />
 
+    </TableRow>
+    <TableRow>
+
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -78,7 +74,7 @@
                 android:id="@+id/radioButton7"
                 android:checked="false" />
 
-        </LinearLayout>
+    </TableRow>
 
-    </RadioGroup>
+    </com.threef.lifenotes.ToggleButtonGroupTableLayout>
 </LinearLayout>

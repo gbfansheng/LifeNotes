@@ -26,5 +26,10 @@
     <string name="alert_mood">请选择心情</string>
     <string name="alert_title">提示</string>
 
+    <string name="network_error">网络连接失败</string>
+    <string name="server_error">服务器内部错误</string>
+    <string name="operation_success">操作成功</string>
+
+
 
 </resources>

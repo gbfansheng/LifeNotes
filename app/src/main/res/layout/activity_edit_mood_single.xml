@@ -1,155 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:columnCount="16" >
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="满足"
-        android:id="@+id/checkBox"
-        android:layout_gravity="left|top"
-        android:checked="false"
-        android:layout_row="1"
-        android:layout_column="0" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="心情:"
         android:id="@+id/textView5"
-        android:layout_row="0"
-        android:layout_column="0"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp" />
 
-    <CheckBox
+    <com.threef.lifenotes.ToggleButtonGroupTableLayout android:id="@+id/mood_group"
+        android:contentDescription="心情"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp">
+
+        <TableRow>
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="满足"
+        android:id="@+id/radioButton10"
+        android:layout_gravity="left|top"/>
+
+    <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="快乐"
-        android:id="@+id/checkBox2"
-        android:layout_gravity="center_horizontal|top"
-        android:checked="false"
-        android:layout_row="1"
-        android:layout_column="1" />
+        android:id="@+id/radioButton11"/>
 
-    <CheckBox
+    <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="兴高采烈"
-        android:id="@+id/checkBox3"
-        android:layout_row="1"
-        android:layout_column="2"
-        android:checked="false" />
+        android:id="@+id/radioButton12"/>
 
-    <CheckBox
+    <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="兴奋"
-        android:id="@+id/checkBox4"
-        android:layout_row="2"
-        android:layout_column="0"
-        android:checked="false" />
+        android:id="@+id/radioButton13" />
 
-    <CheckBox
+
+        </TableRow>
+
+        <TableRow>
+
+    <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="惊讶"
-        android:id="@+id/checkBox5"
-        android:layout_row="2"
-        android:layout_column="1"
-        android:checked="false" />
+        android:id="@+id/radioButton14" />
 
-    <CheckBox
+
+        <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="痛苦"
-        android:id="@+id/checkBox6"
-        android:layout_row="1"
-        android:layout_column="3"
-        android:checked="false" />
+        android:id="@+id/radioButton15" />
 
-    <CheckBox
+
+    <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="恐惧"
-        android:id="@+id/checkBox7"
-        android:layout_row="2"
-        android:layout_column="2"
-        android:checked="false" />
+        android:id="@+id/radioButton16" />
 
-    <CheckBox
+    <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="紧张"
-        android:id="@+id/checkBox8"
-        android:layout_row="2"
-        android:layout_column="3"
-        android:checked="false" />
+        android:id="@+id/radioButton17" />
 
-    <CheckBox
+
+        </TableRow>
+
+        <TableRow>
+
+    <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="孤单"
-        android:id="@+id/checkBox9"
-        android:layout_row="1"
-        android:layout_column="4"
-        android:checked="false" />
+        android:id="@+id/radioButton18"/>
 
-    <CheckBox
+    <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="不满"
-        android:id="@+id/checkBox10"
-        android:layout_row="2"
-        android:layout_column="4"
+        android:id="@+id/radioButton19"
         android:checked="false" />
 
-    <CheckBox
+
+
+    <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="困倦"
-        android:id="@+id/checkBox11"
-        android:layout_row="3"
-        android:layout_column="0"
+        android:id="@+id/radioButton20"
         android:checked="false" />
 
-    <CheckBox
+    <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="安静"
-        android:id="@+id/checkBox12"
-        android:layout_row="3"
-        android:layout_column="1"
+        android:id="@+id/radioButton21"
         android:checked="false" />
 
-    <CheckBox
+
+        </TableRow>
+
+        <TableRow>
+
+    <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="从容"
-        android:id="@+id/checkBox13"
-        android:layout_row="3"
-        android:layout_column="2"
+        android:id="@+id/radioButton22"
         android:checked="false" />
 
-    <CheckBox
+    <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="放松"
-        android:id="@+id/checkBox14"
-        android:layout_row="3"
-        android:layout_column="3"
+        android:id="@+id/radioButton23"
         android:checked="false" />
 
-    <CheckBox
+    <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="平静"
-        android:id="@+id/checkBox15"
-        android:layout_row="3"
-        android:layout_column="4"
+        android:id="@+id/radioButton24"
         android:checked="false" />
 
-</GridLayout>
+        </TableRow>>
+
+    </com.threef.lifenotes.ToggleButtonGroupTableLayout>
+
+</LinearLayout>

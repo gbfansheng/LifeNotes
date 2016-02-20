@@ -1,181 +1,89 @@
 package com.threef.lifenotes;
 
+/**
+ *
+ */
+
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.RadioButton;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 
 /**
- * TODO: document your custom view class.
+ * @author diego
+ *
  */
-public class ToggleButtonGroupTableLayout extends View {
-    private String mExampleString; // TODO: use a default from R.string...
-    private int mExampleColor = Color.RED; // TODO: use a default from R.color...
-    private float mExampleDimension = 0; // TODO: use a default from R.dimen...
-    private Drawable mExampleDrawable;
+public class ToggleButtonGroupTableLayout extends TableLayout  implements OnClickListener {
 
-    private TextPaint mTextPaint;
-    private float mTextWidth;
-    private float mTextHeight;
+    private static final String TAG = "ToggleButtonGroupTableLayout";
+    private RadioButton activeRadioButton;
 
+    /**
+     * @param context
+     */
     public ToggleButtonGroupTableLayout(Context context) {
         super(context);
-        init(null, 0);
+        // TODO Auto-generated constructor stub
     }
 
+    /**
+     * @param context
+     * @param attrs
+     */
     public ToggleButtonGroupTableLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(attrs, 0);
-    }
-
-    public ToggleButtonGroupTableLayout(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-        init(attrs, defStyle);
-    }
-
-    private void init(AttributeSet attrs, int defStyle) {
-        // Load attributes
-        final TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.ToggleButtonGroupTableLayout, defStyle, 0);
-
-        mExampleString = a.getString(
-                R.styleable.ToggleButtonGroupTableLayout_exampleString);
-        mExampleColor = a.getColor(
-                R.styleable.ToggleButtonGroupTableLayout_exampleColor,
-                mExampleColor);
-        // Use getDimensionPixelSize or getDimensionPixelOffset when dealing with
-        // values that should fall on pixel boundaries.
-        mExampleDimension = a.getDimension(
-                R.styleable.ToggleButtonGroupTableLayout_exampleDimension,
-                mExampleDimension);
-
-        if (a.hasValue(R.styleable.ToggleButtonGroupTableLayout_exampleDrawable)) {
-            mExampleDrawable = a.getDrawable(
-                    R.styleable.ToggleButtonGroupTableLayout_exampleDrawable);
-            mExampleDrawable.setCallback(this);
-        }
-
-        a.recycle();
-
-        // Set up a default TextPaint object
-        mTextPaint = new TextPaint();
-        mTextPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
-        mTextPaint.setTextAlign(Paint.Align.LEFT);
-
-        // Update TextPaint and text measurements from attributes
-        invalidateTextPaintAndMeasurements();
-    }
-
-    private void invalidateTextPaintAndMeasurements() {
-        mTextPaint.setTextSize(mExampleDimension);
-        mTextPaint.setColor(mExampleColor);
-        mTextWidth = mTextPaint.measureText(mExampleString);
-
-        Paint.FontMetrics fontMetrics = mTextPaint.getFontMetrics();
-        mTextHeight = fontMetrics.bottom;
+        // TODO Auto-generated constructor stub
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+    public void onClick(View v) {
+        final RadioButton rb = (RadioButton) v;
+        if ( activeRadioButton != null ) {
+            activeRadioButton.setChecked(false);
+        }
+        rb.setChecked(true);
+        activeRadioButton = rb;
+    }
 
-        // TODO: consider storing these as member variables to reduce
-        // allocations per draw cycle.
-        int paddingLeft = getPaddingLeft();
-        int paddingTop = getPaddingTop();
-        int paddingRight = getPaddingRight();
-        int paddingBottom = getPaddingBottom();
+    /* (non-Javadoc)
+     * @see android.widget.TableLayout#addView(android.view.View, int, android.view.ViewGroup.LayoutParams)
+     */
+    @Override
+    public void addView(View child, int index,
+                        android.view.ViewGroup.LayoutParams params) {
+        super.addView(child, index, params);
+        setChildrenOnClickListener((TableRow)child);
+    }
 
-        int contentWidth = getWidth() - paddingLeft - paddingRight;
-        int contentHeight = getHeight() - paddingTop - paddingBottom;
 
-        // Draw the text.
-        canvas.drawText(mExampleString,
-                paddingLeft + (contentWidth - mTextWidth) / 2,
-                paddingTop + (contentHeight + mTextHeight) / 2,
-                mTextPaint);
+    /* (non-Javadoc)
+     * @see android.widget.TableLayout#addView(android.view.View, android.view.ViewGroup.LayoutParams)
+     */
+    @Override
+    public void addView(View child, android.view.ViewGroup.LayoutParams params) {
+        super.addView(child, params);
+        setChildrenOnClickListener((TableRow)child);
+    }
 
-        // Draw the example drawable on top of the text.
-        if (mExampleDrawable != null) {
-            mExampleDrawable.setBounds(paddingLeft, paddingTop,
-                    paddingLeft + contentWidth, paddingTop + contentHeight);
-            mExampleDrawable.draw(canvas);
+
+    private void setChildrenOnClickListener(TableRow tr) {
+        final int c = tr.getChildCount();
+        for (int i=0; i < c; i++) {
+            final View v = tr.getChildAt(i);
+            if ( v instanceof RadioButton ) {
+                v.setOnClickListener(this);
+            }
         }
     }
 
-    /**
-     * Gets the example string attribute value.
-     * @return The example string attribute value.
-     */
-    public String getExampleString() {
-        return mExampleString;
-    }
+    public int getCheckedRadioButtonId() {
+        if ( activeRadioButton != null ) {
+            return activeRadioButton.getId();
+        }
 
-    /**
-     * Sets the view's example string attribute value. In the example view, this string
-     * is the text to draw.
-     * @param exampleString The example string attribute value to use.
-     */
-    public void setExampleString(String exampleString) {
-        mExampleString = exampleString;
-        invalidateTextPaintAndMeasurements();
-    }
-
-    /**
-     * Gets the example color attribute value.
-     * @return The example color attribute value.
-     */
-    public int getExampleColor() {
-        return mExampleColor;
-    }
-
-    /**
-     * Sets the view's example color attribute value. In the example view, this color
-     * is the font color.
-     * @param exampleColor The example color attribute value to use.
-     */
-    public void setExampleColor(int exampleColor) {
-        mExampleColor = exampleColor;
-        invalidateTextPaintAndMeasurements();
-    }
-
-    /**
-     * Gets the example dimension attribute value.
-     * @return The example dimension attribute value.
-     */
-    public float getExampleDimension() {
-        return mExampleDimension;
-    }
-
-    /**
-     * Sets the view's example dimension attribute value. In the example view, this dimension
-     * is the font size.
-     * @param exampleDimension The example dimension attribute value to use.
-     */
-    public void setExampleDimension(float exampleDimension) {
-        mExampleDimension = exampleDimension;
-        invalidateTextPaintAndMeasurements();
-    }
-
-    /**
-     * Gets the example drawable attribute value.
-     * @return The example drawable attribute value.
-     */
-    public Drawable getExampleDrawable() {
-        return mExampleDrawable;
-    }
-
-    /**
-     * Sets the view's example drawable attribute value. In the example view, this drawable is
-     * drawn above the text.
-     * @param exampleDrawable The example drawable attribute value to use.
-     */
-    public void setExampleDrawable(Drawable exampleDrawable) {
-        mExampleDrawable = exampleDrawable;
+        return -1;
     }
 }
