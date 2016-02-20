@@ -1,5 +1,6 @@
 package com.threef.lifenotes;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,10 +20,21 @@ public class EPQResultActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ImageView resultImage = (ImageView)findViewById(R.id.result_image);
+        resultImage.setImageResource(R.mipmap.image1);
         AppCompatTextView resultTitle = (AppCompatTextView) findViewById(R.id.result_title);
+        resultTitle.setText("？？？人格");
         AppCompatTextView resultDetail = (AppCompatTextView) findViewById(R.id.result_detail);
+        resultDetail.setText(getIntent().getStringExtra("epqresult"));
 
-
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(EPQResultActivity.this, QueryActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }

@@ -1,5 +1,7 @@
 package com.threef.lifenotes;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -25,6 +27,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class CollectInfoActivity extends AppCompatActivity {
     EditText age;
@@ -116,10 +119,15 @@ public class CollectInfoActivity extends AppCompatActivity {
             }
         });
 
-        //userId = deviceId
-        Date date = new Date();
-        SimpleDateFormat df=new SimpleDateFormat("ddhhmmss");
-        userId = df.format(date);
+        //userId获得
+        SharedPreferences userInfo = getSharedPreferences("userinfo", 0);
+        userId = userInfo.getString("userid", null);
+        if (userId == null) {
+            Date date = new Date();
+            SimpleDateFormat df=new SimpleDateFormat("ddhhmmss");
+            userId = df.format(date);
+            userInfo.edit().putString("userid",userId);
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -128,62 +136,26 @@ public class CollectInfoActivity extends AppCompatActivity {
                 //调用网络
                 sex = gender.getCheckedRadioButtonId() == R.id.male ? "1" : "0";
                 married = marry.getCheckedRadioButtonId() == R.id.marry ? "1" : "0";
-                Snackbar.make(view, "OK", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-
-                // 创建一个新线程，用于发送并读取微博信息
-                new Thread(new Runnable() {
-                    public void run() {
-                        String target = "";
-                        try {
-                            target = "http://182.92.222.196:80/sh/register.htm?userId="+userId+"&age="+age.getText().toString()
-                                +"&sex="+sex+"&isMerry="+married+"&workAge="+workage.getText().toString()
-                                +"&job="+URLEncoder.encode(job.getText().toString(),"utf-8")+"&jobName="+URLEncoder.encode(carrerTitle.getText().toString(),"utf-8")+"&isSmoke="+
-                                (smoke.isChecked()?"1":"0")+"&isDrink="+(drink.isChecked()?"1":"0")+"&isDiet="+(diet.isChecked()?"1":"0")+"&isFitness="+
-                                (fit.isChecked()?"1":"0")+"&avgHertRat="+heartRate.getText().toString()+"&BMI="+bmi.getText().toString()
-                                +"&sleep="+URLEncoder.encode(sleepStatus,"utf-8")+"&avgWork="+workTime.getText().toString()+"&pressure="+URLEncoder.encode(pressureStatus,"utf-8")
-                                +"&psnIncome="+pIncome.getText().toString()+"&famImcome="+fIncome.getText().toString()+
-                                "&living="+URLEncoder.encode(livingStatus,"utf-8");
-                        } catch (UnsupportedEncodingException e) {
-                            e.printStackTrace();
-                        }
-                        Log.d("Collection",target);
-                        URL url;
-                        try {
-                            url = new URL(target);
-                            HttpURLConnection urlConn = (HttpURLConnection) url
-                                    .openConnection();  //创建一个HTTP连接
-                            InputStreamReader in = new InputStreamReader(
-                                    urlConn.getInputStream()); // 获得读取的内容
-                            BufferedReader buffer = new BufferedReader(in); // 获取输入流对象
-                            String inputLine = null;
-                            //通过循环逐行读取输入流中的内容
-                            while ((inputLine = buffer.readLine()) != null) {
-                                result += inputLine + "\n";
-                            }
-                            in.close(); //关闭字符输入流对象
-                            urlConn.disconnect();   //断开连接
-                        } catch (MalformedURLException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                        Message m = handler.obtainMessage(); // 获取一个Message
-                        handler.sendMessage(m); // 发送消息
-                    }
-                }).start(); // 开启线程
-            }
-        });
-        //创建一个Handler对象
-        handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                if (result != null) {
-                    Log.d("Collection","result="+result);
+                String target = "";
+                try {
+                    target = "http://182.92.222.196:80/sh/register.htm?userId=" + userId + "&age=" + age.getText().toString()
+                            + "&sex=" + sex + "&isMerry=" + married + "&workAge=" + workage.getText().toString()
+                            + "&job=" + URLEncoder.encode(job.getText().toString(), "utf-8") + "&jobName=" + URLEncoder.encode(carrerTitle.getText().toString(), "utf-8") + "&isSmoke=" +
+                            (smoke.isChecked() ? "1" : "0") + "&isDrink=" + (drink.isChecked() ? "1" : "0") + "&isDiet=" + (diet.isChecked() ? "1" : "0") + "&isFitness=" +
+                            (fit.isChecked() ? "1" : "0") + "&avgHertRat=" + heartRate.getText().toString() + "&BMI=" + bmi.getText().toString()
+                            + "&sleep=" + URLEncoder.encode(sleepStatus, "utf-8") + "&avgWork=" + workTime.getText().toString() + "&pressure=" + URLEncoder.encode(pressureStatus, "utf-8")
+                            + "&psnIncome=" + pIncome.getText().toString() + "&famImcome=" + fIncome.getText().toString() +
+                            "&living=" + URLEncoder.encode(livingStatus, "utf-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
                 }
-                super.handleMessage(msg);
-            }
-        };
+                Toast.makeText(CollectInfoActivity.this,result,Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.putExtra("url",target);
+                Log.d("Collection","perUrl:"+target);
+                intent.setClass(CollectInfoActivity.this, EPQActivity.class);
+                startActivity(intent);
+           }
+        });
     }
 }
