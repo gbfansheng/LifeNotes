@@ -11,13 +11,10 @@
     tools:showIn="@layout/activity_query">
 
 
-    <ExpandableListView
+    <ListView
         android:id="@+id/record_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </ExpandableListView>
-
+        android:layout_height="wrap_content"></ListView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/create_btn"

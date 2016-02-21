@@ -9,12 +9,15 @@ import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -34,15 +37,15 @@ public class QueryActivity extends AppCompatActivity {
     String netWorkResult;
     Handler handler;
     List<List<String>> netResultList;
-    ExpandableListView recordListView;
+    ListView recordListView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_query);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        recordListView = (ExpandableListView)findViewById(R.id.record_list);
+        recordListView = (ListView)findViewById(R.id.record_list);
 
         FloatingActionButton createBtn = (FloatingActionButton)findViewById(R.id.create_btn);
         createBtn.setOnClickListener(new View.OnClickListener() {
@@ -56,11 +59,23 @@ public class QueryActivity extends AppCompatActivity {
         SharedPreferences userInfo = getSharedPreferences("userinfo", Context.MODE_PRIVATE);
         userId = userInfo.getString("userid", null);
 
+        //创建一个Handler对象
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                if (netWorkResult != null) {
+                    Toast.makeText(QueryActivity.this, netWorkResult, Toast.LENGTH_SHORT).show();
+                    parseResult();
+                }
+                super.handleMessage(msg);
+            }
+        };
         new Thread(new Runnable() {
             @Override
             public void run() {
                 URL url;
                 String finalUrl = "http://182.92.222.196/sh/qryActivity.htm?userId="+userId;
+                Log.d("Query",finalUrl);
                 netWorkResult = "";
                 try {
                     url = new URL(finalUrl);
@@ -88,19 +103,6 @@ public class QueryActivity extends AppCompatActivity {
                 handler.sendMessage(m); // 发送消息
             }
         }).start();
-        //创建一个Handler对象
-        handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                if (netWorkResult != null) {
-                    Toast.makeText(QueryActivity.this, netWorkResult, Toast.LENGTH_SHORT).show();
-                    parseResult();
-                    recordListView.setAdapter(new RecordExpandableListAdapter(QueryActivity.this));
-                }
-                super.handleMessage(msg);
-            }
-        };
-
     }
 
     private void goCreate(){
@@ -130,71 +132,39 @@ public class QueryActivity extends AppCompatActivity {
                 strings.add(tempJson.getString("enterAddr"));
                 netResultList.add(strings);
             }
+            recordListView.setAdapter(new RecordListAdapter(QueryActivity.this));
+//            recordListView.invalidate();
+
         } catch (Exception ex) {
             // 异常处理代码
             ex.printStackTrace();
         }
     }
 
-    public class RecordExpandableListAdapter extends BaseExpandableListAdapter {
+    public class RecordListAdapter extends BaseAdapter {
         private Context context;
         private LayoutInflater inflater;
-        public RecordExpandableListAdapter(Context context) {
+        public RecordListAdapter(Context context) {
             this.context = context;
             inflater = LayoutInflater.from(context);
         }
         @Override
-        public int getGroupCount() {
+        public int getCount() {
             return netResultList.size();
         }
 
         @Override
-        public int getChildrenCount(int groupPosition) {
-            return 1;
+        public Object getItem(int position) {
+            return position;
         }
 
         @Override
-        public Object getGroup(int groupPosition) {
-            return netResultList.get(groupPosition);
+        public long getItemId(int position) {
+            return position;
         }
 
         @Override
-        public Object getChild(int groupPosition, int childPosition) {
-            return childPosition;
-        }
-
-        @Override
-        public long getGroupId(int groupPosition) {
-            return groupPosition;
-        }
-
-        @Override
-        public long getChildId(int groupPosition, int childPosition) {
-            return childPosition;
-        }
-
-        @Override
-        public boolean hasStableIds() {
-            return false;
-        }
-
-        @Override
-        public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-            GroupHolder holder;
-            if (convertView == null) {
-                convertView =  inflater.inflate(R.layout.epqresult_group,null);
-                holder = new GroupHolder();
-                holder.title = (AppCompatTextView)convertView.findViewById(R.id.group);
-                convertView.setTag(holder);
-            } else {
-                holder = (GroupHolder)convertView.getTag();
-            }
-            holder.title.setText("");
-            return convertView;
-        }
-
-        @Override
-        public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+        public View getView(int position, View convertView, ViewGroup parent) {
             ChildHolder holder;
             if (convertView == null) {
                 convertView =  inflater.inflate(R.layout.epqresult_child,null);
@@ -204,7 +174,7 @@ public class QueryActivity extends AppCompatActivity {
             } else {
                 holder = (ChildHolder)convertView.getTag();
             }
-            List<String> strings = netResultList.get(groupPosition);
+            List<String> strings = netResultList.get(position);
             String text = "";
             for (int i = 0; i <strings.size() ; i ++) {
                 text = text + strings.get(i) + "\n";
@@ -212,18 +182,96 @@ public class QueryActivity extends AppCompatActivity {
             holder.text.setText(text);
             return convertView;
         }
-
-        @Override
-        public boolean isChildSelectable(int groupPosition, int childPosition) {
-            return false;
-        }
     }
 
-    /**存放控件*/
-    public final class GroupHolder{
-        public AppCompatTextView title;
-    }
-
+//    public class RecordExpandableListAdapter extends BaseExpandableListAdapter {
+//        private Context context;
+//        private LayoutInflater inflater;
+//        public RecordExpandableListAdapter(Context context) {
+//            this.context = context;
+//            inflater = LayoutInflater.from(context);
+//        }
+//        @Override
+//        public int getGroupCount() {
+//            return netResultList.size();
+//        }
+//
+//        @Override
+//        public int getChildrenCount(int groupPosition) {
+//            return 1;
+//        }
+//
+//        @Override
+//        public Object getGroup(int groupPosition) {
+//            return netResultList.get(groupPosition);
+//        }
+//
+//        @Override
+//        public Object getChild(int groupPosition, int childPosition) {
+//            return childPosition;
+//        }
+//
+//        @Override
+//        public long getGroupId(int groupPosition) {
+//            return groupPosition;
+//        }
+//
+//        @Override
+//        public long getChildId(int groupPosition, int childPosition) {
+//            return childPosition;
+//        }
+//
+//        @Override
+//        public boolean hasStableIds() {
+//            return false;
+//        }
+//
+//        @Override
+//        public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+//            GroupHolder holder;
+//            if (convertView == null) {
+//                convertView =  inflater.inflate(R.layout.epqresult_group,null);
+//                holder = new GroupHolder();
+//                holder.title = (AppCompatTextView)convertView.findViewById(R.id.group);
+//                convertView.setTag(holder);
+//            } else {
+//                holder = (GroupHolder)convertView.getTag();
+//            }
+//            holder.title.setText("");
+//            return convertView;
+//        }
+//
+//        @Override
+//        public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+//            ChildHolder holder;
+//            if (convertView == null) {
+//                convertView =  inflater.inflate(R.layout.epqresult_child,null);
+//                holder = new ChildHolder();
+//                holder.text = (AppCompatTextView)convertView.findViewById(R.id.child);
+//                convertView.setTag(holder);
+//            } else {
+//                holder = (ChildHolder)convertView.getTag();
+//            }
+//            List<String> strings = netResultList.get(groupPosition);
+//            String text = "";
+//            for (int i = 0; i <strings.size() ; i ++) {
+//                text = text + strings.get(i) + "\n";
+//            }
+//            holder.text.setText(text);
+//            return convertView;
+//        }
+//
+//        @Override
+//        public boolean isChildSelectable(int groupPosition, int childPosition) {
+//            return false;
+//        }
+//    }
+//
+//    /**存放控件*/
+//    public final class GroupHolder{
+//        public AppCompatTextView title;
+//    }
+//
     public final class ChildHolder{
         public AppCompatTextView text;
     }
