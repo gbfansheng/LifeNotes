@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="63dp"
+        android:layout_height="wrap_content"
+        android:text="时间:"
+        android:id="@+id/textView"
+        android:layout_weight="0.03"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="63dp"
+        android:layout_height="wrap_content"
+        android:text="小时"
+        android:id="@+id/textView2"
+        android:layout_weight="0.03"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="0dp"
+        android:textSize="20dp"
+        android:layout_gravity="right|top"
+        android:layout_marginRight="40dp" />
+
+    <EditText
+        android:layout_width="54dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/edit_text_time"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" />
+
+</FrameLayout>

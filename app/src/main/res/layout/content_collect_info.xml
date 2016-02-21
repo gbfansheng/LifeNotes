@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:scrollbars="none"
+    tools:showIn="@layout/activity_collect_info"
+    tools:context="com.threef.lifenotes.CollectInfoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:showIn="@layout/activity_collect_info"
+        >
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/age"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="请输入年龄"
+                android:inputType="number"
+                android:maxLines="1"
+                android:singleLine="true"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/workage"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="工作年限"
+                android:inputType="number"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/job"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="岗位"
+                android:inputType="text"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/carrertitle"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="职称"
+                android:inputType="text"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <RadioGroup
+            android:id="@+id/gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/male"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:text="男"
+                android:textSize="20dp"
+                android:checked="true"
+                />
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/female"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:textSize="20dp"
+                android:text="女"/>
+        </RadioGroup>
+        <RadioGroup
+            android:id="@+id/marry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/ismarry"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:textSize="20dp"
+                android:text="已婚"
+                android:checked="true"
+                />
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/nomarry"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:textSize="20dp"
+                android:text="未婚"/>
+        </RadioGroup>
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/smoke"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="是否吸烟"
+            android:textSize="20dp"
+            />
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/drink"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="是否喝酒"
+            android:textSize="20dp"/>
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/diet"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="是否节食"
+            android:textSize="20dp"/>
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/fit"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="是否健身"
+            android:textSize="20dp"/>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/heartrate"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="请输入心率"
+                android:inputType="number"
+                android:maxLines="1"
+                android:singleLine="true"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/bmi"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="请输入BMI"
+                android:inputType="number"
+                android:maxLines="1"
+                android:singleLine="true"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/worktime"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="请输入平均工作时间"
+                android:inputType="number"
+                android:maxLines="1"
+                android:singleLine="true"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/pincome"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="请输入个人月收入"
+                android:inputType="number"
+                android:maxLines="1"
+                android:singleLine="true"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/fincome"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="请输入家庭月收入"
+                android:inputType="number"
+                android:maxLines="1"
+                android:singleLine="true"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="100dp"
+                android:layout_height="48dp"
+                android:text="睡眠状况:"
+                android:textSize="20dp"/>
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/sleep"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:entries="@array/sleeparray"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="100dp"
+                android:layout_height="48dp"
+                android:text="生活压力:"
+                android:textSize="20dp"/>
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/pressure"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:entries="@array/pressurearray"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="100dp"
+                android:layout_height="48dp"
+                android:text="居住状况:"
+                android:textSize="20dp"/>
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/living"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:entries="@array/livingarray">
+            </android.support.v7.widget.AppCompatSpinner>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
