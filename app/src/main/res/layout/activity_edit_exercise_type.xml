@@ -27,17 +27,13 @@
             android:layout_height="wrap_content"
             android:text="跑步"
             android:id="@+id/radioButton"
-            android:checked="false"
-            android:layout_row="1"
-            android:layout_column="0" />
+            android:checked="false"/>
 
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="散步"
         android:id="@+id/radioButton2"
-        android:layout_row="2"
-        android:layout_column="0"
         android:checked="false" />
 
     <RadioButton
@@ -45,8 +41,6 @@
         android:layout_height="wrap_content"
         android:text="羽毛球"
         android:id="@+id/radioButton5"
-        android:layout_row="2"
-        android:layout_column="1"
         android:checked="false" />
 
             </TableRow>
@@ -57,8 +51,6 @@
         android:layout_height="wrap_content"
         android:text="足球"
         android:id="@+id/radioButton8"
-        android:layout_row="2"
-        android:layout_column="2"
         android:checked="false" />
 
     <RadioButton
@@ -66,8 +58,6 @@
         android:layout_height="wrap_content"
         android:text="乒乓球"
         android:id="@+id/radioButton3"
-        android:layout_row="3"
-        android:layout_column="0"
         android:checked="false" />
 
 
@@ -76,8 +66,6 @@
         android:layout_height="wrap_content"
         android:text="游泳"
         android:id="@+id/radioButton4"
-        android:layout_row="1"
-        android:layout_column="1"
         android:checked="false" />
 
 
@@ -89,8 +77,6 @@
         android:layout_height="wrap_content"
         android:text="篮球"
         android:id="@+id/radioButton6"
-        android:layout_row="3"
-        android:layout_column="1"
         android:checked="false" />
 
     <RadioButton
@@ -98,8 +84,6 @@
         android:layout_height="wrap_content"
         android:text="健身"
         android:id="@+id/radioButton7"
-        android:layout_row="1"
-        android:layout_column="2"
         android:checked="false" />
 
     <RadioButton
@@ -107,8 +91,6 @@
         android:layout_height="wrap_content"
         android:text="高尔夫球"
         android:id="@+id/radioButton9"
-        android:layout_row="3"
-        android:layout_column="2"
         android:checked="false" />
 
         </TableRow>

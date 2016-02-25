@@ -25,6 +25,7 @@ import java.lang.reflect.Field;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +60,11 @@ public class EditActivity extends AppCompatActivity{
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                confirm_edit(id);
+                try {
+                    confirm_edit(id);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -72,7 +77,7 @@ public class EditActivity extends AppCompatActivity{
 
     }
 
-    void confirm_edit(int id){
+    void confirm_edit(int id) throws Exception{
         String baseURL = "http://182.92.222.196/sh/recordActivity.htm?userId=";
 
 
@@ -114,7 +119,7 @@ public class EditActivity extends AppCompatActivity{
                 return;
             }
             RadioButton checkedBtn = (RadioButton)findViewById(checkedId);
-            baseURL += checkedBtn.getText();
+            baseURL += URLEncoder.encode(checkedBtn.getText().toString(), "utf-8");
         }
 
         ToggleButtonGroupTableLayout exercise_location = (ToggleButtonGroupTableLayout) findViewById(R.id.exercise_location_group);
@@ -126,7 +131,7 @@ public class EditActivity extends AppCompatActivity{
                 return;
             }
             RadioButton checkedBtn = (RadioButton)findViewById(checkedId);
-            baseURL += checkedBtn.getText();
+            baseURL += URLEncoder.encode(checkedBtn.getText().toString(), "utf-8");
         }
 
         ToggleButtonGroupTableLayout exercise_type = (ToggleButtonGroupTableLayout) findViewById(R.id.exercise_type_group);
@@ -138,7 +143,7 @@ public class EditActivity extends AppCompatActivity{
                 return;
             }
             RadioButton checkedBtn = (RadioButton)findViewById(checkedId);
-            baseURL += checkedBtn.getText();
+            baseURL += URLEncoder.encode(checkedBtn.getText().toString(), "utf-8");
         }
 
         RadioGroup work_tension = (RadioGroup) findViewById(R.id.work_tension);
@@ -150,7 +155,7 @@ public class EditActivity extends AppCompatActivity{
                 return;
             }
             RadioButton checkedBtn = (RadioButton)findViewById(checkedId);
-            baseURL += checkedBtn.getText();
+            baseURL += URLEncoder.encode(checkedBtn.getText().toString(), "utf-8");
         }
 
         ToggleButtonGroupTableLayout mood = (ToggleButtonGroupTableLayout) findViewById(R.id.mood_group);
@@ -162,7 +167,7 @@ public class EditActivity extends AppCompatActivity{
                 return;
             }
             RadioButton checkedBtn = (RadioButton)findViewById(checkedId);
-            baseURL += checkedBtn.getText();
+            baseURL += URLEncoder.encode(checkedBtn.getText().toString(), "utf-8");
         }
 
         String type = "";
