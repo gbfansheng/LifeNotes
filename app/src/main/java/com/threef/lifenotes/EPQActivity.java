@@ -22,6 +22,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -41,6 +42,8 @@ public class EPQActivity extends AppCompatActivity {
     String rawResult;
     String epqResult;
     String netWorkResult;
+    float nTScore;
+    float eTScore;
     Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -252,6 +255,8 @@ public class EPQActivity extends AppCompatActivity {
                     Toast.makeText(EPQActivity.this,netWorkResult,Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent();
                     intent.putExtra("epqresult",epqResult);
+                    intent.putExtra("nTScore",nTScore);
+                    intent.putExtra("eTScore",eTScore);
                     intent.setClass(EPQActivity.this, EPQResultActivity.class);
                     startActivity(intent);
                 }
@@ -330,6 +335,7 @@ public class EPQActivity extends AppCompatActivity {
         Integer[] lfarr = {4,7,15,21,25,39,45,52,55,60,64,71,75,83};
         lFalseSet = new HashSet<>(Arrays.asList(lfarr));
 
+        DecimalFormat format = new DecimalFormat(".00");
         for (Integer i = 0; i < questionList.size() ; i++ ) {
             Boolean bool = answerMap.get(questionList.get(i));
             if (bool) {
@@ -377,7 +383,9 @@ public class EPQActivity extends AppCompatActivity {
         String result = "";
         pTScore = 50 + 10 * ( pScore - 2.73) / 2.05;
         eTScore = 50 + 10 * ( pScore - 7.50) / 2.84;
+        this.eTScore = (float)eTScore;
         nTScore = 50 + 10 * ( pScore - 4.42) / 2.59;
+        this.nTScore = (float)nTScore;
         lTScore = 50 + 10 * ( pScore - 6.19) / 2.96;
 
         if (pTScore <= 38.5) {
@@ -391,47 +399,47 @@ public class EPQActivity extends AppCompatActivity {
         } else if (pTScore > 61.5) {
             result = "P高分典型";
         }
-        result = result + pTScore;
+        result = result + format.format(pTScore);
         if (eTScore <= 38.5) {
-            result = result + "\n" + "e低分典型";
+            result = result + "\n" + "E低分典型";
         } else if (eTScore > 38.5 && eTScore <= 43.3) {
-            result = result + "\n" + "e低分倾向";
+            result = result + "\n" + "E低分倾向";
         } else if (eTScore > 43.3 && eTScore <= 56.7) {
-            result = result + "\n" + "e中间";
+            result = result + "\n" + "E中间";
         } else if (eTScore > 56.7 && eTScore <= 61.5) {
-            result = result + "\n" + "e高分倾向";
+            result = result + "\n" + "E高分倾向";
         } else if (eTScore > 61.5) {
-            result = result + "\n" + "e高分典型";
+            result = result + "\n" + "E高分典型";
         }
-        result = result + pTScore;
+        result = result + format.format(eTScore);
 
         if (nTScore <= 38.5) {
-            result = result + "\n" + "n低分典型";
+            result = result + "\n" + "N低分典型";
         } else if (nTScore > 38.5 && nTScore <= 43.3) {
-            result = result + "\n" + "n低分倾向";
+            result = result + "\n" + "N低分倾向";
         } else if (nTScore > 43.3 && nTScore <= 56.7) {
-            result = result + "\n" + "n中间";
+            result = result + "\n" + "N中间";
         } else if (nTScore > 56.7 && nTScore <= 61.5) {
-            result = result + "\n" + "n高分倾向";
+            result = result + "\n" + "N高分倾向";
         } else if (nTScore > 61.5) {
-            result = result + "\n" + "n高分典型";
+            result = result + "\n" + "N高分典型";
         }
-        result = result + pTScore;
+        result = result + format.format(nTScore);
 
         if (lTScore <= 38.5) {
-            result = result + "\n" + "l低分典型";
+            result = result + "\n" + "L低分典型";
         } else if (lTScore > 38.5 && lTScore <= 43.3) {
-            result = result + "\n" + "l低分倾向";
+            result = result + "\n" + "L低分倾向";
         } else if (lTScore > 43.3 && lTScore <= 56.7) {
-            result = result + "\n" + "l中间";
+            result = result + "\n" + "L中间";
         } else if (lTScore > 56.7 && lTScore <= 61.5) {
-            result = result + "\n" + "l高分典型";
+            result = result + "\n" + "L高分典型";
         } else if (lTScore > 61.5) {
-            result = result + "\n" + "l高分倾向";
+            result = result + "\n" + "L高分倾向";
         }
-        result = result + pTScore;
+        result = result + format.format(lTScore);
         epqResult = result;
-        Toast.makeText(this,"pScore="+pScore+" eScore="+eScore+" nScore="+nScore+" lScore="+lScore + "\n" + result,Toast.LENGTH_SHORT).show();
-        Log.d("EPQ","pScore="+pScore+" eScore="+eScore+" nScore="+nScore+" lScore="+lScore);
+//        Toast.makeText(this,"pScore="+pScore+" eScore="+eScore+" nScore="+nScore+" lScore="+lScore + "\n" + result,Toast.LENGTH_SHORT).show();
+//        Log.d("EPQ","pScore="+pScore+" eScore="+eScore+" nScore="+nScore+" lScore="+lScore);
     }
 }

@@ -13,11 +13,16 @@
     tools:context="com.threef.lifenotes.EPQResultActivity"
     tools:showIn="@layout/activity_epqresult">
 
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/result_image"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center_horizontal"/>
+    <!--<android.support.v7.widget.AppCompatImageView-->
+        <!--android:id="@+id/result_image"-->
+        <!--android:layout_width="200dp"-->
+        <!--android:layout_height="200dp"-->
+        <!--android:layout_gravity="center_horizontal"/>-->
+    <com.threef.lifenotes.CoordinatesView
+        android:id="@+id/coordinates"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"/>
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/result_title"
@@ -36,6 +41,7 @@
         android:paddingLeft="15dp"
         android:textSize="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textAlignment="center"/>
 
 </LinearLayout>
