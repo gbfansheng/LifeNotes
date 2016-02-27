@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/child"
+        android:id="@+id/time"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:text="2016-02-20"
+        android:background="@color/lightPrimary"/>
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/content"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textSize="22dp"
+        android:text="活动："
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>
