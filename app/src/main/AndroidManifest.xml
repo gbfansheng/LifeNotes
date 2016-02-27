@@ -27,10 +27,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_collect_info"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".EPQActivity"
             android:label="@string/title_activity_epq"
             android:theme="@style/AppTheme.NoActionBar" />

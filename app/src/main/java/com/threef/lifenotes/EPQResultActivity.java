@@ -3,26 +3,35 @@ package com.threef.lifenotes;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ImageView;
 
 public class EPQResultActivity extends AppCompatActivity {
-
+    float nTScore;
+    float eTScore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_epqresult);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        nTScore = getIntent().getFloatExtra("nTScore",0);
+        eTScore = getIntent().getFloatExtra("eTScore",0);
 
-        ImageView resultImage = (ImageView)findViewById(R.id.result_image);
-        resultImage.setImageResource(R.mipmap.image1);
+        CoordinatesView coordinatesView = (CoordinatesView) findViewById(R.id.coordinates);
+        coordinatesView.setResult(eTScore,nTScore);
         AppCompatTextView resultTitle = (AppCompatTextView) findViewById(R.id.result_title);
-        resultTitle.setText("？？？人格");
+        if (nTScore <= 50 && eTScore <= 50) {
+            resultTitle.setText("粘液质人格");
+        } else if (nTScore <= 50 && eTScore >= 50) {
+            resultTitle.setText("多血质人格");
+        } else if (nTScore >= 50 && eTScore <= 50) {
+            resultTitle.setText("抑郁质人格");
+        } else if (nTScore >= 50 && eTScore >= 50) {
+            resultTitle.setText("胆汁质人格");
+        }
         AppCompatTextView resultDetail = (AppCompatTextView) findViewById(R.id.result_detail);
         resultDetail.setText(getIntent().getStringExtra("epqresult"));
 
