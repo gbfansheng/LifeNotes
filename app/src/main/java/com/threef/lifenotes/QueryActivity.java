@@ -182,24 +182,24 @@ public class QueryActivity extends AppCompatActivity {
                 String content = "";
                 if (obj.getString("doing").equals("0")) {
                     time = time + " 工作";
-                    content = content + "工作时长：" + obj.getString("duiring") + "\n";
+                    content = content + "工作时长：" + obj.getString("duiring") + "小时" + "\n";
                     content = content + "心情：" + obj.getString("emotion") + "\n";
-                    content = content + "心率：" + obj.getString("hartRate") ;
+                    content = content + "心率：" + obj.getString("hartRate") + "次/分" ;
 
                 } else if (obj.getString("doing").equals("1")) {
                     time = time + " 运动";
-                    content = content + "运动时长：" + obj.getString("duiring") + "\n";
+                    content = content + "运动时长：" + obj.getString("duiring") + "小时" + "\n";
                     content = content + "运动地点：" + obj.getString("moveAddr") + "\n";
                     content = content + "运动类型：" + obj.getString("movement") + "\n";
                     content = content + "心情：" + obj.getString("emotion") + "\n";
-                    content = content + "心率：" + obj.getString("hartRate") ;
+                    content = content + "心率：" + obj.getString("hartRate") + "次/分" ;
 
                 } else if (obj.getString("doing").equals("2")) {
                     time = time + " 娱乐";
-                    content = content + "娱乐时长：" + obj.getString("duiring") + "\n";
+                    content = content + "娱乐时长：" + obj.getString("duiring") + "小时" + "\n";
                     content = content + "娱乐地点：" + obj.getString("entertainment") + "\n";
                     content = content + "心情：" + obj.getString("emotion") + "\n";
-                    content = content + "心率：" + obj.getString("hartRate");
+                    content = content + "心率：" + obj.getString("hartRate") + "次/分";
                 }
                 holder.title.setText(time);
                 holder.content.setText(content);
