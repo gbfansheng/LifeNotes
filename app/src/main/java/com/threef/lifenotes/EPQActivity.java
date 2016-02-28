@@ -56,7 +56,7 @@ public class EPQActivity extends AppCompatActivity {
         //装载数据？
         String[] questionArray =
                 {
-                        "1.你是否有广泛的爱好？"
+                        "1.你是否有广泛的爱好？",
                         "2.在做任何事情之前，你是否都要考虑一番？",
                         "3.你的情绪时常波动吗？",
                         "4.当别人做了好事，而周围的人认为是你做的时候，你是否感到洋洋得意？",

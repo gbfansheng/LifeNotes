@@ -7,11 +7,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -39,12 +43,11 @@ public class QueryActivity extends AppCompatActivity {
     Handler handler;
     JSONArray netResultList;
     ListView recordListView;
+    Runnable queryTask;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_query);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         recordListView = (ListView)findViewById(R.id.record_list);
 
@@ -71,7 +74,7 @@ public class QueryActivity extends AppCompatActivity {
                 super.handleMessage(msg);
             }
         };
-        new Thread(new Runnable() {
+        queryTask = new Runnable() {
             @Override
             public void run() {
                 URL url;
@@ -103,7 +106,39 @@ public class QueryActivity extends AppCompatActivity {
                 Message m = handler.obtainMessage();
                 handler.sendMessage(m); // 发送消息
             }
-        }).start();
+        };
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
+        if (userId == null) {
+            Intent intent = new Intent();
+            intent.setClass(QueryActivity.this, CollectInfoActivity.class);
+            startActivity(intent);
+        } else {
+            new Thread(queryTask).start();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.query_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.collect_info) {
+            Intent intent = new Intent();
+            intent.setClass(QueryActivity.this, CollectInfoActivity.class);
+            startActivity(intent);
+        } else if (item.getItemId() == R.id.epq_test) {
+            Intent intent = new Intent();
+            intent.setClass(QueryActivity.this, EPQActivity.class);
+            startActivity(intent);
+        }
+        return true;
     }
 
     private void goCreate(){
@@ -197,7 +232,7 @@ public class QueryActivity extends AppCompatActivity {
                 } else if (obj.getString("doing").equals("2")) {
                     time = time + " 娱乐";
                     content = content + "娱乐时长：" + obj.getString("duiring") + "小时" + "\n";
-                    content = content + "娱乐地点：" + obj.getString("entertainment") + "\n";
+//                    content = content + "娱乐地点：" + obj.getString("entertainment") + "\n";
                     content = content + "心情：" + obj.getString("emotion") + "\n";
                     content = content + "心率：" + obj.getString("hartRate") + "次/分";
                 }
