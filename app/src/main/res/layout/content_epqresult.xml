@@ -24,6 +24,13 @@
         android:layout_height="300dp"
         android:layout_gravity="center"/>
 
+    <com.threef.lifenotes.TScoreView
+        android:id="@+id/tscores"
+        android:layout_margin="10dp"
+        android:layout_width="330dp"
+        android:layout_height="330dp"
+        android:layout_gravity="center"/>
+
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/result_title"
         android:paddingRight="15dp"

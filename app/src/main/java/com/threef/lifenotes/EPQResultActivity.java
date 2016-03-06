@@ -11,6 +11,8 @@ import android.view.View;
 public class EPQResultActivity extends AppCompatActivity {
     float nTScore;
     float eTScore;
+    float pTScore;
+    float lTScore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +21,8 @@ public class EPQResultActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         nTScore = getIntent().getFloatExtra("nTScore",0);
         eTScore = getIntent().getFloatExtra("eTScore",0);
+        pTScore = getIntent().getFloatExtra("pTScore",0);
+        lTScore = getIntent().getFloatExtra("lTScore",0);
 
         CoordinatesView coordinatesView = (CoordinatesView) findViewById(R.id.coordinates);
         coordinatesView.setResult(eTScore,nTScore);
@@ -32,6 +36,9 @@ public class EPQResultActivity extends AppCompatActivity {
         } else if (nTScore >= 50 && eTScore >= 50) {
             resultTitle.setText("胆汁质人格");
         }
+
+        TScoreView tScoreView = (TScoreView) findViewById(R.id.tscores);
+        tScoreView.setTScore(pTScore,eTScore,nTScore,lTScore);
         AppCompatTextView resultDetail = (AppCompatTextView) findViewById(R.id.result_detail);
         resultDetail.setText(getIntent().getStringExtra("epqresult"));
 

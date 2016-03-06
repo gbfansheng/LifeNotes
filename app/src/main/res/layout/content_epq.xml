@@ -58,4 +58,33 @@
         android:layout_width="100dp"
         android:layout_height="44dp"
         />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center">
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:text="到"/>
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/page"
+            android:layout_width="50dp"
+            android:layout_height="44dp"
+            android:textSize="20dp"
+            android:textAlignment="center"/>
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:text="题"/>
+    </LinearLayout>
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/jump"
+        android:layout_width="100dp"
+        android:layout_height="44dp"
+        android:text="跳转"
+        android:layout_gravity="center"/>
 </LinearLayout>
