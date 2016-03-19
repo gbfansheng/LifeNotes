@@ -135,6 +135,7 @@ public class QueryActivity extends AppCompatActivity {
             startActivity(intent);
         } else if (item.getItemId() == R.id.epq_test) {
             Intent intent = new Intent();
+            intent.putExtra("from","QuearyActivity");
             intent.setClass(QueryActivity.this, EPQActivity.class);
             startActivity(intent);
         }

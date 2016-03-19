@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 
 /**
  * @ClassName : CoordinatesView
@@ -17,7 +18,7 @@ import android.view.View;
  *
  */
 public class CoordinatesView extends View {
-
+    ImageView backgroundView;
     /*
      * 自定义控件一般写两个构造方法 CoordinatesView(Context context)用于java硬编码创建控件
      * 如果想要让自己的控件能够通过xml来产生就必须有第2个构造方法 CoordinatesView(Context context,
@@ -30,6 +31,7 @@ public class CoordinatesView extends View {
     public CoordinatesView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
+
 
     /*
      * 标准分数据
@@ -73,56 +75,56 @@ public class CoordinatesView extends View {
         super.onDraw(canvas);
         Log.d("EPQ","onDraw");
         Paint paint = new Paint();
-        paint.setColor(Color.BLACK);
+        paint.setColor(Color.RED);
         paint.setTextSize(30);
         paint.setStrokeWidth(2);
 
         // 画坐标轴
-        if (canvas != null) {
-            canvas.drawColor(Color.WHITE);
-            // 画直线
-            canvas.drawLine(0, centerY, 2 * centerX, centerY, paint);
-            canvas.drawLine(centerX, 0, centerX, 2 * centerY, paint);
-            //画标尺
-            for (int i = 0 ; i < 6 ; i ++) {
-                canvas.drawLine(centerX + 1, (i + 1) * divide, centerX + 16, (i + 1) * divide, paint);
-                canvas.drawLine(i * divide, centerY - 1, i * divide, centerY - 16, paint);
-                if (i != 2) {
-                    canvas.drawText(""+(70 - i * 10 ),centerX - 42,(i + 1) * divide, paint);
-                }
-                if (i != 3) {
-                    canvas.drawText(""+(i * 10 + 20),i * divide,centerY + 23,paint);
-                }
-            }
-
-            // 画X轴箭头
-            int x = 2 * centerX, y = centerY;
-            drawTriangle(canvas, new Point(x, y), new Point(x - 10, y - 5),
-                    new Point(x - 10, y + 5));
-            canvas.drawText("E维度", x - 80, y - 20, paint);
-            // 画Y轴箭头
-            x = centerX;
-            y = 0;
-            drawTriangle(canvas, new Point(x, y), new Point(x - 5, y + 10),
-                    new Point(x + 5, y + 10));
-            canvas.drawText("N纬度", x + 12, y + 25, paint);
-
-            canvas.drawText("内向、不稳定", 10,30, paint);
-            canvas.drawText("抑郁质",10,60, paint);
-            canvas.drawText("外向、不稳定", 2 * centerX - 200, 30, paint);
-            canvas.drawText("胆汁质", 2 * centerX - 200, 60, paint);
-            canvas.drawText("内向、稳定", 10, 2 * centerY - 50, paint);
-            canvas.drawText("粘液质", 10, 2 * centerY - 20, paint);
-            canvas.drawText("外向、稳定", 2 * centerX - 200, 2 * centerY - 50, paint);
-            canvas.drawText("多血质", 2 * centerX - 200, 2 * centerY - 20, paint);
-            // 画中心点坐标
-            // 先计算出来当前中心点坐标的值
-//            String centerString = "(" + (centerX - po.x) / 2 + ","
-//                    + (po.y - centerY) / 2 + ")";
-//            // 然后显示坐标
-//            canvas.drawText(centerString, centerX - 25, centerY + 15, paint);
-
-        }
+//        if (canvas != null) {
+//            canvas.drawColor(Color.WHITE);
+//            // 画直线
+//            canvas.drawLine(0, centerY, 2 * centerX, centerY, paint);
+//            canvas.drawLine(centerX, 0, centerX, 2 * centerY, paint);
+//            //画标尺
+//            for (int i = 0 ; i < 6 ; i ++) {
+//                canvas.drawLine(centerX + 1, (i + 1) * divide, centerX + 16, (i + 1) * divide, paint);
+//                canvas.drawLine(i * divide, centerY - 1, i * divide, centerY - 16, paint);
+//                if (i != 2) {
+//                    canvas.drawText(""+(70 - i * 10 ),centerX - 42,(i + 1) * divide, paint);
+//                }
+//                if (i != 3) {
+//                    canvas.drawText(""+(i * 10 + 20),i * divide,centerY + 23,paint);
+//                }
+//            }
+//
+//            // 画X轴箭头
+//            int x = 2 * centerX, y = centerY;
+//            drawTriangle(canvas, new Point(x, y), new Point(x - 10, y - 5),
+//                    new Point(x - 10, y + 5));
+//            canvas.drawText("E维度", x - 80, y - 20, paint);
+//            // 画Y轴箭头
+//            x = centerX;
+//            y = 0;
+//            drawTriangle(canvas, new Point(x, y), new Point(x - 5, y + 10),
+//                    new Point(x + 5, y + 10));
+//            canvas.drawText("N纬度", x + 12, y + 25, paint);
+//
+//            canvas.drawText("内向、不稳定", 10,30, paint);
+//            canvas.drawText("抑郁质",10,60, paint);
+//            canvas.drawText("外向、不稳定", 2 * centerX - 200, 30, paint);
+//            canvas.drawText("胆汁质", 2 * centerX - 200, 60, paint);
+//            canvas.drawText("内向、稳定", 10, 2 * centerY - 50, paint);
+//            canvas.drawText("粘液质", 10, 2 * centerY - 20, paint);
+//            canvas.drawText("外向、稳定", 2 * centerX - 200, 2 * centerY - 50, paint);
+//            canvas.drawText("多血质", 2 * centerX - 200, 2 * centerY - 20, paint);
+//            // 画中心点坐标
+//            // 先计算出来当前中心点坐标的值
+////            String centerString = "(" + (centerX - po.x) / 2 + ","
+////                    + (po.y - centerY) / 2 + ")";
+////            // 然后显示坐标
+////            canvas.drawText(centerString, centerX - 25, centerY + 15, paint);
+//
+//        }
 
         if (canvas != null) {
             /*

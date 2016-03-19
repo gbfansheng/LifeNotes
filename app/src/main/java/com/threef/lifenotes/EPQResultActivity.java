@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 
 public class EPQResultActivity extends AppCompatActivity {
     float nTScore;
@@ -23,6 +24,9 @@ public class EPQResultActivity extends AppCompatActivity {
         eTScore = getIntent().getFloatExtra("eTScore",0);
         pTScore = getIntent().getFloatExtra("pTScore",0);
         lTScore = getIntent().getFloatExtra("lTScore",0);
+
+        ImageView backgroundView = (ImageView) findViewById(R.id.backgroundview);
+        backgroundView.setImageResource(R.mipmap.backgroundview);
 
         CoordinatesView coordinatesView = (CoordinatesView) findViewById(R.id.coordinates);
         coordinatesView.setResult(eTScore,nTScore);
