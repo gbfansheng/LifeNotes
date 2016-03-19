@@ -19,9 +19,9 @@
     <string name="title_activity_daily_record">DailyRecordActivity</string>
 
 
-    <string name="totay_work">今日工作</string>
-    <string name="totay_exercise">今日运动</string>
-    <string name="totay_entertainment">今日休闲</string>
+    <string name="totay_work">添加一项工作</string>
+    <string name="totay_exercise">添加一项运动</string>
+    <string name="totay_entertainment">添加一项休闲</string>
 
     <string name="alert_time">请输入时间</string>
     <string name="alert_heartbeat">请输入心率</string>
