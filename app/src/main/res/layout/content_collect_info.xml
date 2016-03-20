@@ -21,7 +21,20 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/activity_collect_info"
         >
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="用户昵称"
+                android:inputType="number"
+                android:maxLines="1"
+                android:singleLine="true"/>
 
+        </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +43,7 @@
                 android:id="@+id/age"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="请输入年龄"
+                android:hint="年龄"
                 android:inputType="number"
                 android:maxLines="1"
                 android:singleLine="true"/>
@@ -130,31 +143,127 @@
                 android:textSize="20dp"
                 android:text="未婚"/>
         </RadioGroup>
-        <android.support.v7.widget.AppCompatCheckBox
+        <RadioGroup
             android:id="@+id/smoke"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="是否吸烟"
-            android:textSize="20dp"
-            />
-        <android.support.v7.widget.AppCompatCheckBox
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/smokeyes"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:textSize="20dp"
+                android:text="吸烟"
+                android:checked="true"
+                />
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/smokeyear"
+                android:layout_width="50dp"
+                android:layout_height="48dp" />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="20dp"
+                android:layout_height="48dp"
+                android:text="年"
+                android:textSize="20dp"/>
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/smokeno"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:textSize="20dp"
+                android:text="不吸烟"/>
+        </RadioGroup>
+        <RadioGroup
             android:id="@+id/drink"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="是否喝酒"
-            android:textSize="20dp"/>
-        <android.support.v7.widget.AppCompatCheckBox
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/drinkyes"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:textSize="20dp"
+                android:text="喝酒"
+                android:checked="true"
+                />
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/drinkyear"
+                android:layout_width="50dp"
+                android:layout_height="48dp" />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="20dp"
+                android:layout_height="48dp"
+                android:text="年"
+                android:textSize="20dp"/>
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/drinkno"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:textSize="20dp"
+                android:text="不喝酒"/>
+        </RadioGroup>
+        <RadioGroup
             android:id="@+id/diet"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="是否节食"
-            android:textSize="20dp"/>
-        <android.support.v7.widget.AppCompatCheckBox
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/dietyes"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:textSize="20dp"
+                android:text="节食"
+                android:checked="true"
+                />
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/dietyear"
+                android:layout_width="50dp"
+                android:layout_height="48dp" />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="20dp"
+                android:layout_height="48dp"
+                android:text="年"
+                android:textSize="20dp"/>
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/dietno"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:textSize="20dp"
+                android:text="不节食"/>
+        </RadioGroup>
+        <RadioGroup
             android:id="@+id/fit"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="是否健身"
-            android:textSize="20dp"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/fityes"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:textSize="20dp"
+                android:text="健身"
+                android:checked="true"
+                />
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/fityear"
+                android:layout_width="50dp"
+                android:layout_height="48dp" />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="20dp"
+                android:layout_height="48dp"
+                android:text="年"
+                android:textSize="20dp"/>
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/fitno"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:textSize="20dp"
+                android:text="不健身"/>
+        </RadioGroup>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -163,26 +272,13 @@
                 android:id="@+id/heartrate"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="请输入心率"
+                android:hint="请输入平均心率"
                 android:inputType="number"
                 android:maxLines="1"
                 android:singleLine="true"/>
 
         </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <EditText
-                android:id="@+id/bmi"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="请输入BMI"
-                android:inputType="number"
-                android:maxLines="1"
-                android:singleLine="true"/>
 
-        </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -191,7 +287,7 @@
                 android:id="@+id/worktime"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="请输入平均工作时间"
+                android:hint="平均工作时间"
                 android:inputType="number"
                 android:maxLines="1"
                 android:singleLine="true"/>
@@ -205,7 +301,7 @@
                 android:id="@+id/pincome"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="请输入个人月收入"
+                android:hint="个人月平均收入"
                 android:inputType="number"
                 android:maxLines="1"
                 android:singleLine="true"/>
@@ -219,12 +315,127 @@
                 android:id="@+id/fincome"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="请输入家庭月收入"
+                android:hint="家庭月平均收入"
                 android:inputType="number"
                 android:maxLines="1"
                 android:singleLine="true"/>
 
         </android.support.design.widget.TextInputLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="身高"
+                android:textSize="20dp"/>
+            <EditText
+                android:id="@+id/height"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:inputType="number"
+                android:maxLines="1"
+                android:singleLine="true"/>
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="cm"
+                android:textSize="20dp"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="     体重"
+                android:textSize="20dp"/>
+            <EditText
+                android:id="@+id/weight"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:inputType="number"
+                android:maxLines="1"
+                android:singleLine="true"/>
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="kg"
+                android:textSize="20dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:textAlignment="center"
+                android:text="居住地区:"
+                android:textSize="20dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/qu"
+                        android:layout_width="80dp"
+                        android:layout_height="48dp"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:singleLine="true"/>
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:text="区"
+                        android:textSize="20dp"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/jiedao"
+                        android:layout_width="80dp"
+                        android:layout_height="48dp"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:singleLine="true"/>
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:text="街道"
+                        android:textSize="20dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/lu"
+                        android:layout_width="80dp"
+                        android:layout_height="48dp"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:singleLine="true"/>
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:text="路"
+                        android:textSize="20dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -256,22 +467,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:entries="@array/pressurearray"/>
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="100dp"
-                android:layout_height="48dp"
-                android:text="居住状况:"
-                android:textSize="20dp"/>
-            <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/living"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:entries="@array/livingarray">
-            </android.support.v7.widget.AppCompatSpinner>
         </LinearLayout>
 
     </LinearLayout>

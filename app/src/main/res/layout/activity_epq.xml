@@ -21,6 +21,41 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
+    <LinearLayout
+        android:id="@+id/hintview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:orientation="vertical">
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:text="导语"
+            android:textSize="38dp"
+            android:textColor="@android:color/black"/>
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            android:text="接下来有85道简单的选题。请你依次回答这些问题，回答不需要写字，回答问题时不需要过多的思考，符合你时答“是”，不符时答“否”。这些问题要求你按自己的实际情况回答，不要去猜测怎样才是正确的回答，因为这里不存在正确或错误的回答，也没有捉弄人的问题，看懂意思就尽快回答，不要花太多的时间去想。问卷无时间限制，但不要拖延太长，也不要未看懂问题就回答。"/>
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/startbtn"
+            android:layout_width="100dp"
+            android:layout_height="48dp"
+            android:text="开始答题"
+            android:layout_gravity="center_horizontal"/>
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/laterbtn"
+            android:layout_width="100dp"
+            android:layout_height="48dp"
+            android:text="稍后作答"
+            android:layout_gravity="center_horizontal"/>
+
+    </LinearLayout>
 
     <include layout="@layout/content_epq"/>
 

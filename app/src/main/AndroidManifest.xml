@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".CollectInfoActivity"
+            android:name=".QueryActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,14 +34,18 @@
             android:name=".EPQResultActivity"
             android:label="@string/title_activity_epqresult"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".QueryActivity"
-            android:label="@string/title_activity_daily_record"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <!--<activity-->
+            <!--android:name=".QueryActivity"-->
+            <!--android:label="@string/title_activity_daily_record"-->
+            <!--android:theme="@style/AppTheme.NoActionBar"></activity>-->
         <activity android:name=".CreateActivity"
                   android:label="CreateActivity"></activity>
         <activity android:name=".EditActivity"
             android:label="EditActivity"></activity>
+        <activity
+            android:name=".CollectInfoActivity"
+            android:label="@string/title_activity_collect_info"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

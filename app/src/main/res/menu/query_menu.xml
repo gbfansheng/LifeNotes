@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+         xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.threef.lifenotes.CollectInfoActivity">
+    <item
+        android:id="@+id/collect_info"
+        android:title="编辑个人信息"/>
+    <item
+        android:id="@+id/epq_test"
+        android:title="进行艾森克人格测试"/>
+</menu>

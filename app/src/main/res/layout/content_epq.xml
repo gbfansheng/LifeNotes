@@ -12,7 +12,8 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_epq"
-    tools:context="com.threef.lifenotes.EPQActivity">
+    tools:context="com.threef.lifenotes.EPQActivity"
+    android:id="@+id/epqview">
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/question"
         android:layout_width="match_parent"
@@ -51,11 +52,40 @@
         android:layout_width="100dp"
         android:layout_height="44dp"
         />
+    <!--<android.support.v7.widget.AppCompatButton-->
+        <!--android:id="@+id/next"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:text="下一题"-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="44dp"-->
+        <!--/>-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center">
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:text="到"/>
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/page"
+            android:layout_width="50dp"
+            android:layout_height="44dp"
+            android:textSize="20dp"
+            android:textAlignment="center"/>
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:text="题"/>
+    </LinearLayout>
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/next"
-        android:layout_gravity="center"
-        android:text="下一题"
+        android:id="@+id/jump"
         android:layout_width="100dp"
         android:layout_height="44dp"
-        />
+        android:text="跳转"
+        android:layout_gravity="center"/>
 </LinearLayout>

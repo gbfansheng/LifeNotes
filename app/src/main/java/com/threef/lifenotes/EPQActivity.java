@@ -8,10 +8,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -36,7 +38,9 @@ public class EPQActivity extends AppCompatActivity {
     RadioButton yesButton;
     RadioButton noButton;
     AppCompatButton prevButton;
-    AppCompatButton nextButton;
+//    AppCompatButton nextButton;
+    AppCompatButton jumpButton;
+    AppCompatEditText pageText;
     int currentQuestion = -1;
     String preUrl;
     String rawResult;
@@ -44,7 +48,13 @@ public class EPQActivity extends AppCompatActivity {
     String netWorkResult;
     float nTScore;
     float eTScore;
+    float pTScore;
+    float lTScore;
     Handler handler;
+    LinearLayout hintview;
+    LinearLayout epqview;
+    AppCompatButton startBtn;
+    AppCompatButton laterBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,9 +62,33 @@ public class EPQActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        hintview = (LinearLayout) findViewById(R.id.hintview);
+        hintview.setVisibility(View.VISIBLE);
+        epqview = (LinearLayout) findViewById(R.id.epqview);
+        epqview.setVisibility(View.INVISIBLE);
+
+        startBtn = (AppCompatButton) findViewById(R.id.startbtn);
+        startBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hintview.setVisibility(View.INVISIBLE);
+                epqview.setVisibility(View.VISIBLE);
+            }
+        });
+
+        laterBtn = (AppCompatButton) findViewById(R.id.laterbtn);
+        laterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(EPQActivity.this, QueryActivity.class);
+                startActivity(intent);
+            }
+        });
+
         preUrl = getIntent().getStringExtra("url");
         //装载数据？
-        String[] questionArray =
+        final String[] questionArray =
                 {
                         "1.你是否有广泛的爱好？"
 //                        "2.在做任何事情之前，你是否都要考虑一番？",
@@ -147,10 +181,13 @@ public class EPQActivity extends AppCompatActivity {
 
         questionTextView = (AppCompatTextView) findViewById(R.id.question);
         radioGroup = (RadioGroup) findViewById(R.id.option_group);
+        pageText = (AppCompatEditText) findViewById(R.id.page);
+        pageText.clearFocus();
         yesButton = (RadioButton) findViewById(R.id.yes);
         noButton = (RadioButton) findViewById(R.id.no);
         prevButton = (AppCompatButton) findViewById(R.id.prev);
-        nextButton = (AppCompatButton) findViewById(R.id.next);
+//        nextButton = (AppCompatButton) findViewById(R.id.next);
+        jumpButton = (AppCompatButton) findViewById(R.id.jump);
 
         nextQuestion();
 
@@ -184,12 +221,47 @@ public class EPQActivity extends AppCompatActivity {
             }
         });
 
-        nextButton.setOnClickListener(new View.OnClickListener() {
+//        nextButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                nextQuestion();
+//            }
+//        });
+
+        jumpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nextQuestion();
+                String pageString = pageText.getText().toString();
+                Integer page = 0;
+                try{
+                    page = Integer.valueOf(pageString);
+                }
+                catch(Exception e){
+                    Toast.makeText(EPQActivity.this,"输入题号错误",Toast.LENGTH_SHORT).show();
+                }
+                if (page > 0 && page <= questionArray.length) {
+                    currentQuestion = page - 1;
+                    questionTextView.setText(questionList.get(currentQuestion));
+                    Boolean b = answerMap.get(questionList.get(currentQuestion));
+                    if (b == null) {
+                        radioGroup.clearCheck();
+                    } else if (b == true) {
+                        radioGroup.check(R.id.yes);
+                    } else if (b == false) {
+                        radioGroup.check(R.id.no);
+                        yesButton.setChecked(false);
+                        noButton.setChecked(true);
+                    }
+                    pageText.clearComposingText();
+                } else {
+                    Toast.makeText(EPQActivity.this,"输入题号错误",Toast.LENGTH_SHORT).show();
+                }
+
+
             }
         });
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -257,6 +329,8 @@ public class EPQActivity extends AppCompatActivity {
                     intent.putExtra("epqresult",epqResult);
                     intent.putExtra("nTScore",nTScore);
                     intent.putExtra("eTScore",eTScore);
+                    intent.putExtra("pTScore",pTScore);
+                    intent.putExtra("lTScore",lTScore);
                     intent.setClass(EPQActivity.this, EPQResultActivity.class);
                     startActivity(intent);
                 }
@@ -382,12 +456,13 @@ public class EPQActivity extends AppCompatActivity {
         //所以T分在43.3—56.7之间为中间型；在38.5—43.3或56.7—61.5之间为倾向型；在38.5以下或61.5以上为典型型
         String result = "";
         pTScore = 50 + 10 * ( pScore - 2.73) / 2.05;
+        this.pTScore = (float)pTScore;
         eTScore = 50 + 10 * ( pScore - 7.50) / 2.84;
         this.eTScore = (float)eTScore;
         nTScore = 50 + 10 * ( pScore - 4.42) / 2.59;
         this.nTScore = (float)nTScore;
         lTScore = 50 + 10 * ( pScore - 6.19) / 2.96;
-
+        this.lTScore = (float)lTScore;
         if (pTScore <= 38.5) {
             result = "P低分典型";
         } else if (pTScore > 38.5 && pTScore <= 43.3) {
