@@ -21,7 +21,8 @@
 
             <include android:id="@+id/layout_time" layout="@layout/activity_edit_time"/>
             <include android:id="@+id/entertainment_location" layout="@layout/activity_edit_entertainment_location"/>
-            <include android:id="@+id/layout_mood" layout="@layout/activity_edit_mood_single"/>
+            <include android:id="@+id/entertainment_type" layout="@layout/activity_edit_entertainment_type"/>
+            <include android:id="@+id/layout_mood" layout="@layout/activity_edit_mood"/>
             <include android:id="@+id/layout_heartbeart" layout="@layout/activity_edit_heartbeat"/>
             <include android:id="@+id/confirm_btn" layout="@layout/activity_edit_confirm_btn"/>
 

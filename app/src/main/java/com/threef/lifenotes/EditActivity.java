@@ -26,8 +26,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
 
 public class EditActivity extends AppCompatActivity{
 
@@ -112,7 +110,7 @@ public class EditActivity extends AppCompatActivity{
 
         ToggleButtonGroupTableLayout entertainment_location = (ToggleButtonGroupTableLayout) findViewById(R.id.entertainment_location_group);
         if (entertainment_location != null){
-            baseURL += "&entertaiment=";
+            baseURL += "&enterAddr=";
             int checkedId = entertainment_location.getCheckedRadioButtonId();
             if (checkedId < 0){
                 showAlert(getString(R.string.alert_title),getString(R.string.alert_entertainment_location));
@@ -121,6 +119,20 @@ public class EditActivity extends AppCompatActivity{
             RadioButton checkedBtn = (RadioButton)findViewById(checkedId);
             baseURL += URLEncoder.encode(checkedBtn.getText().toString(), "utf-8");
         }
+
+        ToggleButtonGroupTableLayout entertainment_type = (ToggleButtonGroupTableLayout) findViewById(R.id.entertainment_type_group);
+        if (entertainment_type != null){
+            baseURL += "&entertaiment=";
+            int checkedId = entertainment_type.getCheckedRadioButtonId();
+            if (checkedId < 0){
+                showAlert(getString(R.string.alert_title),getString(R.string.alert_entertainment_type));
+                return;
+            }
+            RadioButton checkedBtn = (RadioButton)findViewById(checkedId);
+            baseURL += URLEncoder.encode(checkedBtn.getText().toString(), "utf-8");
+        }
+
+
 
         ToggleButtonGroupTableLayout exercise_location = (ToggleButtonGroupTableLayout) findViewById(R.id.exercise_location_group);
         if (exercise_location != null){
@@ -143,7 +155,7 @@ public class EditActivity extends AppCompatActivity{
                 return;
             }
             RadioButton checkedBtn = (RadioButton)findViewById(checkedId);
-            baseURL += URLEncoder.encode(checkedBtn.getText().toString(), "utf-8");
+            baseURL += URLEncoder.encode(checkedBtn.getContentDescription().toString(), "utf-8");
         }
 
         RadioGroup work_tension = (RadioGroup) findViewById(R.id.work_tension);
@@ -158,16 +170,24 @@ public class EditActivity extends AppCompatActivity{
             baseURL += URLEncoder.encode(checkedBtn.getText().toString(), "utf-8");
         }
 
-        ToggleButtonGroupTableLayout mood = (ToggleButtonGroupTableLayout) findViewById(R.id.mood_group);
-        if (mood != null){
-            baseURL += "&emotion=";
-            int checkedId = mood.getCheckedRadioButtonId();
-            if (checkedId < 0){
-                showAlert(getString(R.string.alert_title),getString(R.string.alert_mood));
-                return;
-            }
-            RadioButton checkedBtn = (RadioButton)findViewById(checkedId);
-            baseURL += URLEncoder.encode(checkedBtn.getText().toString(), "utf-8");
+//        ToggleButtonGroupTableLayout mood = (ToggleButtonGroupTableLayout) findViewById(R.id.mood_group);
+//        if (mood != null){
+//            baseURL += "&emotion=";
+//            int checkedId = mood.getCheckedRadioButtonId();
+//            if (checkedId < 0){
+//                showAlert(getString(R.string.alert_title),getString(R.string.alert_mood));
+//                return;
+//            }
+//            RadioButton checkedBtn = (RadioButton)findViewById(checkedId);
+//            baseURL += URLEncoder.encode(checkedBtn.getText().toString(), "utf-8");
+//        }
+
+        baseURL += "&emotion=";
+        try{
+            baseURL += URLEncoder.encode(getMoods(), "utf-8");
+        }catch (Exception e){
+            showAlert(getString(R.string.alert_title),getString(R.string.alert_mood));
+            return;
         }
 
         String type = "";
@@ -195,17 +215,25 @@ public class EditActivity extends AppCompatActivity{
         }.start();
     }
 
-    String[] getMoods(){
-        List moods = new ArrayList();
+    String getMoods() throws Exception{
+//        List moods = new ArrayList();
+        String moods = new String();
+        int[] ids = new int[]{R.id.checkBox0,R.id.checkBox1,R.id.checkBox2,R.id.checkBox3,R.id.checkBox4,R.id.checkBox5,R.id.checkBox6,R.id.checkBox7,R.id.checkBox8,R.id.checkBox9,R.id.checkBox10,R.id.checkBox11,R.id.checkBox12,R.id.checkBox13,R.id.checkBox14};
         for(int i = 0;i < 15;i ++){
-            String id_name = "checkBox" + i;
-            int id = getResId(id_name, CheckBox.class);
+            int id = ids[i];
             CheckBox checkBox = (CheckBox) findViewById(id);
             if (checkBox.isChecked()){
-                moods.add(checkBox.getText());
+                moods += checkBox.getText();
+                moods += ",";
             }
         }
-        return  (String[])moods.toArray();
+
+        if (moods.length() == 0){
+            throw new Exception();
+        }
+//        return  (String[])moods.toArray();
+        moods = moods.substring(0,moods.length()-1);
+        return moods;
     }
 
     public static int getResId(String resName, Class<?> c) {

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="娱乐类型:"
+        android:id="@+id/textView6"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp" />
+
+    <com.threef.lifenotes.ToggleButtonGroupTableLayout android:id="@+id/entertainment_type_group"
+        android:contentDescription="地点"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp">
+
+        <TableRow>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="逛街" android:id="@+id/adioButton2" android:checked="false" android:contentDescription="逛街" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="开车" android:id="@+id/adioButton3" android:checked="false" android:contentDescription="开车" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="遛狗" android:id="@+id/adioButton4" android:checked="false" android:contentDescription="遛狗" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="看电影" android:id="@+id/adioButton5" android:checked="false" android:contentDescription="看电影" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="KTV" android:id="@+id/adioButton6" android:checked="false" android:contentDescription="KTV" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="休闲（坐）" android:id="@+id/adioButton7" android:checked="false" android:contentDescription="休闲（坐）" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="休闲（站）" android:id="@+id/adioButton8" android:checked="false" android:contentDescription="休闲（站）" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="阅读/工作" android:id="@+id/adioButton9" android:checked="false" android:contentDescription="阅读/工作" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="桌球" android:id="@+id/adioButton10" android:checked="false" android:contentDescription="桌球" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="午睡/小睡" android:id="@+id/adioButton11" android:checked="false" android:contentDescription="午睡/小睡" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="郊游" android:id="@+id/adioButton12" android:checked="false" android:contentDescription="郊游" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="打牌/下棋" android:id="@+id/adioButton13" android:checked="false" android:contentDescription="打牌/下棋" android:contextClickable="false" /></TableRow>
+
+    </com.threef.lifenotes.ToggleButtonGroupTableLayout>
+
+</LinearLayout>

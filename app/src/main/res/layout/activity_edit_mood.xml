@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="满足"
-        android:id="@+id/checkBox"
+        android:id="@+id/checkBox0"
         android:layout_gravity="left|top"
         android:checked="false"
         android:layout_row="1"
@@ -92,24 +92,6 @@
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="孤单"
-        android:id="@+id/checkBox9"
-        android:layout_row="1"
-        android:layout_column="4"
-        android:checked="false" />
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="不满"
-        android:id="@+id/checkBox10"
-        android:layout_row="2"
-        android:layout_column="4"
-        android:checked="false" />
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="困倦"
         android:id="@+id/checkBox11"
         android:layout_row="3"
@@ -146,10 +128,28 @@
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="孤单"
+        android:id="@+id/checkBox9"
+        android:layout_row="4"
+        android:layout_column="0"
+        android:checked="false" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="不满"
+        android:id="@+id/checkBox10"
+        android:layout_row="4"
+        android:layout_column="1"
+        android:checked="false" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="平静"
-        android:id="@+id/checkBox15"
-        android:layout_row="3"
-        android:layout_column="4"
+        android:id="@+id/checkBox1"
+        android:layout_row="4"
+        android:layout_column="2"
         android:checked="false" />
 
 </GridLayout>

@@ -21,80 +21,9 @@
         android:layout_marginLeft="10dp">
 
         <TableRow>
-
-    <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="跑步"
-            android:id="@+id/adioButton"
-            android:checked="false"/>
-
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="徒步"
-        android:id="@+id/adioButton2"
-        android:checked="false" />
-
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="羽毛球"
-        android:id="@+id/adioButton5"
-        android:checked="false" />
-
-            </TableRow>
-        <TableRow>
-
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="足球"
-        android:id="@+id/adioButton8"
-        android:checked="false" />
-
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="乒乓球"
-        android:id="@+id/adioButton3"
-        android:checked="false" />
-
-
-        <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="游泳"
-        android:id="@+id/adioButton4"
-        android:checked="false" />
-
-
-        </TableRow>
-    <TableRow>
-
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="篮球"
-        android:id="@+id/adioButton6"
-        android:checked="false" />
-
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="健身"
-        android:id="@+id/adioButton7"
-        android:checked="false" />
-
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="高尔夫球"
-        android:id="@+id/adioButton9"
-        android:checked="false" />
-
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="慢走" android:id="@+id/adioButton2" android:checked="false" android:contentDescription="走路-慢走" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="快走、健走" android:id="@+id/adioButton3" android:checked="false" android:contentDescription="走路-快走、健走" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="下楼梯" android:id="@+id/adioButton4" android:checked="false" android:contentDescription="爬楼梯-下楼梯" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="上楼梯" android:id="@+id/adioButton5" android:checked="false" android:contentDescription="爬楼梯-上楼梯" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="慢跑" android:id="@+id/adioButton6" android:checked="false" android:contentDescription="跑步-慢跑" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="快跑" android:id="@+id/adioButton7" android:checked="false" android:contentDescription="跑步-快跑" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="骑车(一般速度)" android:id="@+id/adioButton8" android:checked="false" android:contentDescription="骑自行车-一般速度" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="骑车(快速)" android:id="@+id/adioButton9" android:checked="false" android:contentDescription="骑自行车-快速" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="骑车(竞速)" android:id="@+id/adioButton10" android:checked="false" android:contentDescription="骑自行车-竞速" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="拖地" android:id="@+id/adioButton11" android:checked="false" android:contentDescription="家务-拖地" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="园艺" android:id="@+id/adioButton12" android:checked="false" android:contentDescription="家务-园艺" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="搬运重物" android:id="@+id/adioButton13" android:checked="false" android:contentDescription="家务-搬运重物" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="瑜伽" android:id="@+id/adioButton14" android:checked="false" android:contentDescription="其他运动-瑜伽" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="健美操（轻松）" android:id="@+id/adioButton15" android:checked="false" android:contentDescription="其他运动-健美操（轻松）" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="健美操（激烈）" android:id="@+id/adioButton16" android:checked="false" android:contentDescription="其他运动-健美操（激烈）" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="跳舞（慢）" android:id="@+id/adioButton17" android:checked="false" android:contentDescription="其他运动-跳舞（慢）" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="跳舞（快）" android:id="@+id/adioButton18" android:checked="false" android:contentDescription="其他运动-跳舞（快）" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="有氧舞蹈" android:id="@+id/adioButton19" android:checked="false" android:contentDescription="其他运动-有氧舞蹈" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="飞盘" android:id="@+id/adioButton20" android:checked="false" android:contentDescription="其他运动-飞盘" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="排球" android:id="@+id/adioButton21" android:checked="false" android:contentDescription="其他运动-排球" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="保龄球" android:id="@+id/adioButton22" android:checked="false" android:contentDescription="其他运动-保龄球" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="太极拳" android:id="@+id/adioButton23" android:checked="false" android:contentDescription="其他运动-太极拳" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="乒乓球" android:id="@+id/adioButton24" android:checked="false" android:contentDescription="其他运动-乒乓球" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="棒球/垒球" android:id="@+id/adioButton25" android:checked="false" android:contentDescription="其他运动-棒球/垒球" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="高尔夫" android:id="@+id/adioButton26" android:checked="false" android:contentDescription="其他运动-高尔夫" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="溜直排轮" android:id="@+id/adioButton27" android:checked="false" android:contentDescription="其他运动-溜直排轮" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="羽毛球" android:id="@+id/adioButton28" android:checked="false" android:contentDescription="其他运动-羽毛球" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="游泳（慢）" android:id="@+id/adioButton29" android:checked="false" android:contentDescription="其他运动-游泳（慢）" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="游泳（快）" android:id="@+id/adioButton30" android:checked="false" android:contentDescription="其他运动-游泳（快）" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="篮球（半场）" android:id="@+id/adioButton31" android:checked="false" android:contentDescription="其他运动-篮球（半场）" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="篮球（全场）" android:id="@+id/adioButton32" android:checked="false" android:contentDescription="其他运动-篮球（全场）" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="网球" android:id="@+id/adioButton33" android:checked="false" android:contentDescription="其他运动-网球" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="足球" android:id="@+id/adioButton34" android:checked="false" android:contentDescription="其他运动-足球" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="跳绳（慢）" android:id="@+id/adioButton35" android:checked="false" android:contentDescription="其他运动-跳绳（慢）" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="跳绳（快）" android:id="@+id/adioButton36" android:checked="false" android:contentDescription="其他运动-跳绳（快）" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="登山（休闲）" android:id="@+id/adioButton37" android:checked="false" android:contentDescription="其他运动-登山（休闲）" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="登山（有氧）" android:id="@+id/adioButton38" android:checked="false" android:contentDescription="其他运动-登山（有氧）" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="柔道/空手道/跆拳道" android:id="@+id/adioButton39" android:checked="false" android:contentDescription="其他运动-柔道/空手道/跆拳道" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="肌力训练" android:id="@+id/adioButton40" android:checked="false" android:contentDescription="其他运动-肌力训练" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="一般有氧运动" android:id="@+id/adioButton41" android:checked="false" android:contentDescription="其他运动-一般有氧运动" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="体能训练" android:id="@+id/adioButton42" android:checked="false" android:contentDescription="其他运动-体能训练" android:contextClickable="false" /><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="仰卧起坐" android:id="@+id/adioButton43" android:checked="false" android:contentDescription="其他运动-仰卧起坐" android:contextClickable="false" /></TableRow><TableRow><RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="潜水" android:id="@+id/adioButton44" android:checked="false" android:contentDescription="其他运动-潜水" android:contextClickable="false" />
         </TableRow>
 
-    </com.threef.lifenotes.ToggleButtonGroupTableLayout>
+</com.threef.lifenotes.ToggleButtonGroupTableLayout>
 
 </LinearLayout>
