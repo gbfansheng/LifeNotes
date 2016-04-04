@@ -35,5 +35,6 @@
     <string name="network_error">网络连接失败</string>
     <string name="server_error">服务器内部错误</string>
     <string name="operation_success">操作成功</string>
+    <string name="title_activity_everyday">EverydayActivity</string>
 
 </resources>

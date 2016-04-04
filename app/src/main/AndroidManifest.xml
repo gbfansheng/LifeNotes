@@ -8,8 +8,8 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -34,18 +34,34 @@
             android:name=".EPQResultActivity"
             android:label="@string/title_activity_epqresult"
             android:theme="@style/AppTheme.NoActionBar" />
-        <!--<activity-->
-            <!--android:name=".QueryActivity"-->
-            <!--android:label="@string/title_activity_daily_record"-->
-            <!--android:theme="@style/AppTheme.NoActionBar"></activity>-->
-        <activity android:name=".CreateActivity"
-                  android:label="CreateActivity"></activity>
-        <activity android:name=".EditActivity"
-            android:label="EditActivity"></activity>
+        <!-- <activity -->
+        <!-- android:name=".QueryActivity" -->
+        <!-- android:label="@string/title_activity_daily_record" -->
+        <!-- android:theme="@style/AppTheme.NoActionBar"></activity> -->
+        <activity
+            android:name=".CreateActivity"
+            android:label="CreateActivity" />
+        <activity
+            android:name=".EditActivity"
+            android:label="EditActivity" />
         <activity
             android:name=".CollectInfoActivity"
             android:label="@string/title_activity_collect_info"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".EverydayActivity"
+            android:label="@string/title_activity_everyday"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <receiver android:name="AlarmReceiver">
+            <intent-filter>
+                <action android:name="android.alarm.demo.action" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
