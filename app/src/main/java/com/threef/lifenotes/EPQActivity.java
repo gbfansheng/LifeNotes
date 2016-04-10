@@ -1,6 +1,8 @@
 package com.threef.lifenotes;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -25,7 +27,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -285,7 +289,7 @@ public class EPQActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             URL url;
-                            String finalUrl = preUrl + "testReport" + rawResult;
+                            String finalUrl = preUrl + "&testReport=" + rawResult;
                             netWorkResult = "";
                             try {
                                 url = new URL(finalUrl);
@@ -323,6 +327,11 @@ public class EPQActivity extends AppCompatActivity {
         handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
+                SharedPreferences userInfo = getSharedPreferences("userinfo", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor=userInfo.edit();
+                editor.putBoolean("registered", true);
+                editor.commit();
+
                 if (netWorkResult != null) {
                     Toast.makeText(EPQActivity.this,netWorkResult,Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent();
