@@ -23,5 +23,14 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin" />
 
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/everyday"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:textColor="@color/white"
+        android:text="今日小结"
+        android:textSize="20dp"
+        android:background="@color/colorPrimary"/>
 
 </android.support.design.widget.CoordinatorLayout>

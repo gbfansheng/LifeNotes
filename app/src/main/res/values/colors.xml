@@ -6,4 +6,5 @@
     <color name="lightPrimary">#C5CAE9</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#727272</color>
+    <color name="white">#ffffff</color>
 </resources>

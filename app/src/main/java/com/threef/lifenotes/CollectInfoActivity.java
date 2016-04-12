@@ -196,8 +196,8 @@ public class CollectInfoActivity extends AppCompatActivity {
                         +(smoke.getCheckedRadioButtonId() == R.id.smokeyes? "吸烟 "+smokeyear.getText()+" 年":"不吸烟")+ "\n"
                         +(drink.getCheckedRadioButtonId() == R.id.drinkyes? "喝酒 "+drinkyear.getText()+" 年":"不喝酒")+ "\n"
                         +(diet.getCheckedRadioButtonId() == R.id.dietyes? "节食 "+dietyear.getText()+" 年":"不节食")+"\n"
-                        +(fit.getCheckedRadioButtonId() == R.id.fityes? "健身 "+fityear.getText() + " 年":"不健身")+"\n"
-                        +"平均心率："+heartRate.getText()+"\n"
+                        +(fit.getCheckedRadioButtonId() == R.id.fityes? "健身 "+fityear.getText() + " 年":(fit.getCheckedRadioButtonId() == R.id.fittemp ? "偶尔健身":"不健身"))+"\n"
+                        //+"平均心率："+heartRate.getText()+"\n"
                         +"平均工作时间："+workTime.getText()+"\n"
                         +"个人平均月收入："+pIncome.getText()+"\n"
                         +"家庭月平均收入："+fIncome.getText()+"\n"
@@ -212,7 +212,7 @@ public class CollectInfoActivity extends AppCompatActivity {
            }
         });
 
-        submitBtn.setOnClickListener(new View.OnClickListener() {
+        submitBtn.setOnClickLstener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DecimalFormat fnum = new DecimalFormat("##0.00");
@@ -230,8 +230,8 @@ public class CollectInfoActivity extends AppCompatActivity {
                             + "&isSmoke="  + (smoke.getCheckedRadioButtonId() == R.id.smokeyes ? "1" : "0") + "&smokeAge=" + (smoke.getCheckedRadioButtonId() == R.id.smokeyes ? smokeyear.getText():"0")
                             + "&isDrink="+ (drink.getCheckedRadioButtonId() == R.id.drinkyes ? "1" : "0") + "&drinkAge=" + (drink.getCheckedRadioButtonId() == R.id.drinkyes ? drinkyear.getText():"0")
                             + "&isDiet="+ (diet.getCheckedRadioButtonId() == R.id.dietyes ? "1" : "0") + "&dietAge=" + (diet.getCheckedRadioButtonId() == R.id.dietyes ? dietyear.getText():"0")
-                            + "&isFitness="+ (fit.getCheckedRadioButtonId() == R.id.dietyear ? "1" : "0") + "&fitness=" + (fit.getCheckedRadioButtonId() == R.id.fityes ? fityear.getText(): "0")
-                            + "&avgHertRat=" + heartRate.getText().toString() + "&BMI=" + bmiString
+                            + "&isFitness="+ (fit.getCheckedRadioButtonId() == R.id.fityes ? "1" : (fit.getCheckedRadioButtonId() == R.id.fittemp ? "2":"0")) + "&fitness=" + (fit.getCheckedRadioButtonId() == R.id.fityes ? fityear.getText(): "0")
+                            /*+ "&avgHertRat=" + heartRate.getText().toString()*/ + "&BMI=" + bmiString + "&heigh=" + height.getText().toString() + "&weight=" + weight.getText().toString()
                             + "&sleep=" + URLEncoder.encode(sleepStatus, "utf-8") + "&avgWork=" + workTime.getText().toString() + "&pressure=" + URLEncoder.encode(pressureStatus, "utf-8")
                             + "&psnIncome=" + pIncome.getText().toString() + "&famImcome=" + fIncome.getText().toString() +
                             "&living=" + URLEncoder.encode(live, "utf-8");

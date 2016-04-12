@@ -13,6 +13,7 @@ import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -24,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -52,6 +54,7 @@ public class QueryActivity extends AppCompatActivity {
     JSONArray netResultList;
     ListView recordListView;
     Runnable queryTask;
+    AppCompatButton everyDayButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +68,17 @@ public class QueryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 goCreate();
+            }
+        });
+
+        everyDayButton = (AppCompatButton) findViewById(R.id.everyday);
+        everyDayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("from","QueryActivity");
+                intent.setClass(QueryActivity.this, EverydayActivity.class);
+                startActivity(intent);
             }
         });
 
