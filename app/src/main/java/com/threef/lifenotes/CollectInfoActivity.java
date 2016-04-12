@@ -212,7 +212,7 @@ public class CollectInfoActivity extends AppCompatActivity {
            }
         });
 
-        submitBtn.setOnClickLstener(new View.OnClickListener() {
+        submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DecimalFormat fnum = new DecimalFormat("##0.00");
