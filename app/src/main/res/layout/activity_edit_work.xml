@@ -20,10 +20,10 @@
             >
 
             <include android:id="@+id/layout_time" layout="@layout/activity_edit_time"/>
-            <include android:id="@+id/layout_work_tension" layout="@layout/activity_edit_work_tension"/>
+            <!--<include android:id="@+id/layout_work_tension" layout="@layout/activity_edit_work_tension"/>-->
             <include android:id="@+id/layout_mood" layout="@layout/activity_edit_mood"/>
 
-            <include android:id="@+id/layout_heartbeart" layout="@layout/activity_edit_heartbeat"/>
+            <!--<include android:id="@+id/layout_heartbeart" layout="@layout/activity_edit_heartbeat"/>-->
             <include android:id="@+id/confirm_btn" layout="@layout/activity_edit_confirm_btn"/>
 
         </LinearLayout>

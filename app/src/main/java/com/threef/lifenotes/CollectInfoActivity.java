@@ -12,8 +12,6 @@ import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
@@ -22,7 +20,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.UnsupportedEncodingException;
-import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -100,7 +97,7 @@ public class CollectInfoActivity extends AppCompatActivity {
         drinkyear = (EditText) findViewById(R.id.drinkyear);
         dietyear = (EditText) findViewById(R.id.dietyear);
         fityear = (EditText) findViewById(R.id.fityear);
-        heartRate = (EditText) findViewById(R.id.heartrate);
+//        heartRate = (EditText) findViewById(R.id.heartrate);
 //        bmi = (EditText) findViewById(R.id.bmi);
         workTime = (EditText) findViewById(R.id.worktime);
         pIncome = (EditText) findViewById(R.id.pincome);

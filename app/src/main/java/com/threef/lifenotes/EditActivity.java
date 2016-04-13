@@ -1,6 +1,7 @@
 package com.threef.lifenotes;
 
 import android.app.AlertDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,9 +12,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
@@ -26,6 +26,11 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
+
 
 public class EditActivity extends AppCompatActivity{
 
@@ -50,9 +55,9 @@ public class EditActivity extends AppCompatActivity{
                 title = getString(R.string.totay_entertainment);
                 break;
         }
+
         setContentView(layoutId);
         setTitle(title);
-
 
         Button confirmBtn = (Button) findViewById(R.id.edit_confirm_btn);
         confirmBtn.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +65,7 @@ public class EditActivity extends AppCompatActivity{
             public void onClick(View view) {
                 try {
                     confirm_edit(id);
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -68,12 +73,55 @@ public class EditActivity extends AppCompatActivity{
 
         SingleShotLocationProvider.requestSingleUpdate(this,
                 new SingleShotLocationProvider.LocationCallback() {
-                    @Override public void onNewLocationAvailable(SingleShotLocationProvider.GPSCoordinates location) {
+                    @Override
+                    public void onNewLocationAvailable(SingleShotLocationProvider.GPSCoordinates location) {
                         Log.i("Location", "my location is " + location.toString());
                     }
                 });
 
+
+        Button picker1 = (Button) findViewById(R.id.beginButton);
+        Button picker2 = (Button) findViewById(R.id.endButton);
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tpd_init((Button) view);
+            }
+        };
+        picker1.setOnClickListener(listener);
+        picker2.setOnClickListener(listener);
     }
+
+    private TimePickerDialog tpd=null;
+    private Date beginDate = null;
+    private Date endDate = null;
+
+    void tpd_init(final Button btn){
+        TimePickerDialog.OnTimeSetListener otsl=new TimePickerDialog.OnTimeSetListener(){
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                tpd.dismiss();
+
+                Date date = new Date();
+                date.setMinutes(minute);
+                date.setHours(hourOfDay);
+                SimpleDateFormat fmt=new SimpleDateFormat("HH:mm");
+                String beginStr = fmt.format(date);
+                btn.setText(beginStr);
+
+                if (btn.getId() == R.id.beginButton){
+                    beginDate = date;
+                }else{
+                    endDate = date;
+                }
+            }
+        };
+        Calendar calendar=Calendar.getInstance(TimeZone.getDefault());
+        int hourOfDay=calendar.get(Calendar.HOUR_OF_DAY);
+        int minute=calendar.get(Calendar.MINUTE);
+        tpd=new TimePickerDialog(this,otsl,hourOfDay,minute,true);
+        tpd.show();
+    }
+
 
     void confirm_edit(int id) throws Exception{
         String baseURL = "http://182.92.222.196/sh/recordActivity.htm?userId=";
@@ -90,23 +138,44 @@ public class EditActivity extends AppCompatActivity{
 //            baseURL += "&calorie=";
 //            baseURL += calorieText.getText();
 //        }
+//        EditText timeText = (EditText) findViewById(R.id.edit_text_time);
+//        baseURL += "&duiring=";
+//        baseURL += timeText.getText();
+//        if (timeText.getText() == null){
+//            showAlert(getString(R.string.alert_title),getString(R.string.alert_time));
+//            return;
+//        }
 
-        EditText timeText = (EditText) findViewById(R.id.edit_text_time);
-        baseURL += "&duiring=";
-        baseURL += timeText.getText();
-        if (timeText.getText() == null){
-            showAlert(getString(R.string.alert_title),getString(R.string.alert_time));
+        if (beginDate == null)
+        {
+            showAlert(getString(R.string.alert_title),getString(R.string.alert_time_begin));
             return;
         }
-
-        EditText heartBeatText = (EditText) findViewById(R.id.edit_text_heartbeat);
-        baseURL += "&hartRate=";
-        baseURL += heartBeatText.getText();
-
-        if (heartBeatText.getText() == null){
-            showAlert(getString(R.string.alert_title),getString(R.string.alert_heartbeat));
+        if (endDate == null)
+        {
+            showAlert(getString(R.string.alert_title),getString(R.string.alert_time_end));
             return;
         }
+        if (beginDate.getHours() > endDate.getHours())
+        {
+            showAlert(getString(R.string.alert_title),getString(R.string.alert_time_error));
+            return;
+        }
+        SimpleDateFormat fmt=new SimpleDateFormat("yyyyMMddHHmmss");
+        String beginStr = fmt.format(beginDate);
+        String endStr = fmt.format(endDate);
+        baseURL += "&startTime=";
+        baseURL += URLEncoder.encode(beginStr, "utf-8");
+        baseURL += "&endTime=";
+        baseURL += URLEncoder.encode(endStr, "utf-8");
+
+//        EditText heartBeatText = (EditText) findViewById(R.id.edit_text_heartbeat);
+//        baseURL += "&hartRate=";
+//        baseURL += heartBeatText.getText();
+//        if (heartBeatText.getText() == null){
+//            showAlert(getString(R.string.alert_title),getString(R.string.alert_heartbeat));
+//            return;
+//        }
 
         ToggleButtonGroupTableLayout entertainment_location = (ToggleButtonGroupTableLayout) findViewById(R.id.entertainment_location_group);
         if (entertainment_location != null){
@@ -158,17 +227,17 @@ public class EditActivity extends AppCompatActivity{
             baseURL += URLEncoder.encode(checkedBtn.getContentDescription().toString(), "utf-8");
         }
 
-        RadioGroup work_tension = (RadioGroup) findViewById(R.id.work_tension);
-        if (work_tension != null){
-            baseURL += "&work_tension=";
-            int checkedId = work_tension.getCheckedRadioButtonId();
-            if (checkedId < 0){
-                showAlert(getString(R.string.alert_title),getString(R.string.alert_work_tension));
-                return;
-            }
-            RadioButton checkedBtn = (RadioButton)findViewById(checkedId);
-            baseURL += URLEncoder.encode(checkedBtn.getText().toString(), "utf-8");
-        }
+//        RadioGroup work_tension = (RadioGroup) findViewById(R.id.work_tension);
+//        if (work_tension != null){
+//            baseURL += "&work_tension=";
+//            int checkedId = work_tension.getCheckedRadioButtonId();
+//            if (checkedId < 0){
+//                showAlert(getString(R.string.alert_title),getString(R.string.alert_work_tension));
+//                return;
+//            }
+//            RadioButton checkedBtn = (RadioButton)findViewById(checkedId);
+//            baseURL += URLEncoder.encode(checkedBtn.getText().toString(), "utf-8");
+//        }
 
 //        ToggleButtonGroupTableLayout mood = (ToggleButtonGroupTableLayout) findViewById(R.id.mood_group);
 //        if (mood != null){
@@ -190,6 +259,7 @@ public class EditActivity extends AppCompatActivity{
             return;
         }
 
+        Log.i("dddddddddd", baseURL);
         String type = "";
         switch (id){
             case R.id.button1:
@@ -219,16 +289,18 @@ public class EditActivity extends AppCompatActivity{
 //        List moods = new ArrayList();
         String moods = new String();
         int[] ids = new int[]{R.id.checkBox0,R.id.checkBox1,R.id.checkBox2,R.id.checkBox3,R.id.checkBox4,R.id.checkBox5,R.id.checkBox6,R.id.checkBox7,R.id.checkBox8,R.id.checkBox9,R.id.checkBox10,R.id.checkBox11,R.id.checkBox12,R.id.checkBox13,R.id.checkBox14};
+        int number = 0;
         for(int i = 0;i < 15;i ++){
             int id = ids[i];
             CheckBox checkBox = (CheckBox) findViewById(id);
             if (checkBox.isChecked()){
                 moods += checkBox.getText();
                 moods += ",";
+                number += 1;
             }
         }
 
-        if (moods.length() == 0){
+        if (moods.length() == 0 || number > 3){
             throw new Exception();
         }
 //        return  (String[])moods.toArray();

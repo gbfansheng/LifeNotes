@@ -24,13 +24,17 @@
     <string name="totay_entertainment">添加一项休闲</string>
 
     <string name="alert_time">请输入时间</string>
+    <string name="alert_time_begin">请设置开始时间</string>
+    <string name="alert_time_end">请设置结束时间</string>
+    <string name="alert_time_error">开始时间大于结束时间</string>
+
     <string name="alert_heartbeat">请输入心率</string>
     <string name="alert_entertainment_location">请选择娱乐地点</string>
     <string name="alert_entertainment_type">请选择娱乐类型</string>
     <string name="alert_exercise_location">请选择运动地点</string>
     <string name="alert_exercise_type">请选择运动类型</string>
     <string name="alert_work_tension">请选择工作强度</string>
-    <string name="alert_mood">请选择心情</string>
+    <string name="alert_mood">请选择1~3种心情</string>
     <string name="alert_title">提示</string>
 
     <string name="network_error">网络连接失败</string>
