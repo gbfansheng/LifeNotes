@@ -9,9 +9,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -23,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -38,15 +41,20 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 public class QueryActivity extends AppCompatActivity {
     String userId;
+    Boolean isRegistered;
+    Boolean isSetClocked;
     String netWorkResult;
     Handler handler;
     JSONArray netResultList;
     ListView recordListView;
     Runnable queryTask;
+    AppCompatButton everyDayButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,9 +71,24 @@ public class QueryActivity extends AppCompatActivity {
             }
         });
 
+        everyDayButton = (AppCompatButton) findViewById(R.id.everyday);
+        everyDayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("from","QueryActivity");
+                intent.setClass(QueryActivity.this, EverydayActivity.class);
+                startActivity(intent);
+            }
+        });
+
         //userId获得
         SharedPreferences userInfo = getSharedPreferences("userinfo", Context.MODE_PRIVATE);
         userId = userInfo.getString("userid", null);
+        isRegistered = userInfo.getBoolean("registered",false);
+        isSetClocked = userInfo.getBoolean("setclocked",false);
+        Log.d("userinfo",""+userId);
+        Log.d("userinfo",""+isRegistered);
 
         //创建一个Handler对象
         handler = new Handler() {
@@ -111,11 +134,61 @@ public class QueryActivity extends AppCompatActivity {
                 handler.sendMessage(m); // 发送消息
             }
         };
+
+        if (!isSetClocked) {
+//            long firstTime = SystemClock.elapsedRealtime(); // 开机之后到现在的运行时间(包括睡眠时间)
+            long systemTime = System.currentTimeMillis();
+//            Log.d("time","time1:"+firstTime);
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(System.currentTimeMillis());
+// 这里时区需要设置一下，不然会有8个小时的时间差
+            calendar.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.HOUR_OF_DAY, 22);
+            calendar.set(Calendar.SECOND, 0);
+            calendar.set(Calendar.MILLISECOND, 0);
+
+
+// 选择的定时时间
+            long selectTime = calendar.getTimeInMillis();
+//// 如果当前时间大于设置的时间，那么就从第二天的设定时间开始
+            if(systemTime > selectTime) {
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
+                selectTime = calendar.getTimeInMillis();
+            }
+//// 计算现在时间到设定时间的时间差
+//            long time = selectTime - systemTime;
+//            firstTime += time;
+
+//            Calendar calendar=Calendar.getInstance();
+//            calendar.setTimeInMillis(System.currentTimeMillis());
+//            calendar.add(Calendar.SECOND, 5);
+//
+
+//             Log.d("time","time2:"+firstTime);
+            setAlarmTime(this,selectTime);
+        }
+
     }
+
+    private void setAlarmTime(Context context,  long timeInMillis) {
+        AlarmManager am = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent("android.alarm.demo.action");
+        PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        int interval = 24 * 60 * 60 * 1000;
+        am.setRepeating(AlarmManager.RTC_WAKEUP, timeInMillis, interval, sender);
+
+        SharedPreferences userInfo = getSharedPreferences("userinfo", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = userInfo.edit();
+        editor.putBoolean("setclocked", true);
+        editor.commit();
+    }
+
     @Override
     protected void onResume(){
         super.onResume();
-        if (userId == null) {
+        if (!isRegistered) {
             Intent intent = new Intent();
             intent.setClass(QueryActivity.this, CollectInfoActivity.class);
             startActivity(intent);

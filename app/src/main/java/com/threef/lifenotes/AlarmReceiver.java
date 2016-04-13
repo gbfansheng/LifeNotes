@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.NotificationCompat;
+import android.widget.Toast;
 
 /**
  * Created by shenglinfan on 16/4/4.
@@ -26,6 +27,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             builder.setContentTitle("每日小结").setSmallIcon(R.mipmap.ic_launcher).
                     setDefaults(Notification.DEFAULT_ALL).setContentIntent(pendingIntent).setAutoCancel(true);
             manager.notify(1, builder.build());
+            Toast.makeText(context,"alarm",Toast.LENGTH_SHORT).show();
 
         }
     }
