@@ -191,7 +191,7 @@ public class EditActivity extends AppCompatActivity{
 
         ToggleButtonGroupTableLayout entertainment_type = (ToggleButtonGroupTableLayout) findViewById(R.id.entertainment_type_group);
         if (entertainment_type != null){
-            baseURL += "&entertaiment=";
+            baseURL += "&entertainment=";
             int checkedId = entertainment_type.getCheckedRadioButtonId();
             if (checkedId < 0){
                 showAlert(getString(R.string.alert_title),getString(R.string.alert_entertainment_type));
